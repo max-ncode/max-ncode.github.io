@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Safer Parenting. Perfectly Private. | Purple Parrot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="The privacy-first, intelligent baby monitor. No internet, no compromise. GDPR compliant.">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Bitter:wght@400;700&family=Grandiflora+One:wght@400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* Tailwind & Custom Colors based on your style */
+            --pp-purple: #6D28D9;
+            /* Deep Violet / Tailwind Indigo-700 equivalent for accents */
+            --pp-light-purple: #8B5CF6;
+            /* Tailwind Violet-500 */
+            --pp-bg: #F8F4FF;
+            /* Very light lavender background */
+            --pp-text: #1F2937;
+            /* Dark Grey/Slate for text */
+        }
+
+        body {
+            font-family: 'Bitter', 'Inter', system-ui, sans-serif;
+            background: var(--pp-bg);
+            color: var(--pp-text);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-weight: 800;
+        }
+
+        .text-pp-purple {
+            color: var(--pp-purple);
+        }
+
+        .bg-pp-purple {
+            background-color: var(--pp-purple);
+        }
+
+        .hover\:bg-pp-light-purple:hover {
+            background-color: var(--pp-light-purple);
+        }
+
+        .border-pp-light-purple {
+            border-color: var(--pp-light-purple);
+        }
+
+        /* Custom style for the subtle checkmark icon */
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .check-item::before {
+            content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%236D28D9" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>');
+            margin-right: 1rem;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="p-6 bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="text-2xl font-extrabold text-pp-purple" style="font-family: 'Grandiflora One', cursive;">Purple
+                Parrot</div>
+            <nav class="hidden md:flex space-x-6 text-gray-600 font-semibold">
+                <a href="#" class="hover:text-pp-purple transition">Home</a>
+                <a href="#" class="hover:text-pp-purple transition">Blog</a>
+                <a href="#contact" class="hover:text-pp-purple transition">Contact</a>
+            </nav>
+            <a href="#pre-order"
+                class="md:hidden bg-pp-purple text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-pp-light-purple transition">Sign
+                Up</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 md:py-32 text-center">
+            <div class="max-w-4xl mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                    <span class="text-pp-purple">Are you okay sharing your child’s private moments</span> with a million
+                    companies?
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    Web-connected baby monitors are constantly delivering your family’s identity. We built the **Purple
+                    Parrot** to give you **life-saving intelligence** without ever compromising your privacy.
+                </p>
+                <a href="#pre-order"
+                    class="inline-block bg-pp-purple text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:bg-pp-light-purple transition duration-300 transform hover:scale-105">
+                    Reserve Your Private Monitor Now
+                </a>
+                <p class="mt-4 text-sm text-gray-500">Early supporters receive an exclusive launch discount.</p>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div
+                        class="h-80 md:h-96 w-full bg-gray-200 rounded-xl flex items-center justify-center text-gray-500 italic shadow-lg">
+
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500 text-center">The problem: Data is constantly being streamed and
+                        monetized.</p>
+                </div>
+
+                <div>
+                    <span class="text-sm font-bold text-pp-purple uppercase tracking-wider mb-2 block">Our Origin
+                        Story</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                        The Dangerous Choice Parents Face
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-6">
+                        As new parents, we were shocked to find we had to choose between a **private, but basic**
+                        monitor and a **smart, but data-leaking** monitor. Why risk your child's digital identity just
+                        to track their breathing?
+                    </p>
+                    <p class="text-lg text-gray-700 font-bold mb-4">
+                        We built Purple Parrot to eliminate that compromise.
+                    </p>
+                    <div class="mt-6 p-4 border-l-4 border-pp-purple bg-indigo-50 rounded-r-lg">
+                        <p class="font-bold text-pp-purple">Built in Europe, Backed by Tehnopol.</p>
+                        <p class="text-sm text-gray-600">Proudly developed within the <a href="[Link to Tehnopol]"
+                                target="_blank" class="underline hover:text-pp-light-purple">Tehnopol Startup
+                                Incubator</a>, ensuring strict GDPR compliance from day one.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">
+                        Edge AI: 100% Private, Maximum Intelligence.
+                    </h2>
+                    <p class="text-xl text-gray-700 mb-8">
+                        Purple Parrot uses **cutting-edge Edge AI**. All video analysis and health tracking happens
+                        locally on the device. **Your family’s data never leaves your house.**
+                    </p>
+
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="check-item">
+                            <span class="ml-4">**Crucial Safety Alerts:** Immediate notification if your child has
+                                rolled over or is covered by a blanket (key SIDS risk mitigation).</span>
+                        </li>
+                        <li class="check-item">
+                            <span class="ml-4">**Advanced Health Monitoring:** Track breathing rate, heart rate, and
+                                temperature—offline.</span>
+                        </li>
+                        <li class="check-item">
+                            <span class="ml-4">**Total Portability:** Use it in the car, in the pram, or camping. Safe
+                                parenting travels with you.</span>
+                        </li>
+                        <li class="check-item">
+                            <span class="ml-4">**Anxiety Relief:** Give yourself a break and let the little parrot do
+                                some of the worrying for you.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div
+                        class="h-80 md:h-96 w-full bg-gray-200 rounded-xl flex items-center justify-center text-gray-500 italic shadow-lg">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pre-order" class="py-16 bg-pp-purple text-white">
+            <div class="max-w-xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-extrabold mb-4 text-white">Ready For Private Parenting?</h2>
+                <p class="text-lg mb-6 opacity-80">
+                    Purple Parrot is launching soon. Fill out the form to reserve your spot and receive an **exclusive
+                    launch discount** as an early supporter.
+                </p>
+
+                <form action="[YOUR FORM SUBMISSION URL HERE]" method="POST"
+                    class="bg-white p-6 rounded-xl shadow-2xl space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" placeholder="First Name (required)" name="first_name" required
+                            class="w-full p-3 border border-gray-300 rounded-lg text-gray-800">
+                        <input type="text" placeholder="Last Name" name="last_name"
+                            class="w-full p-3 border border-gray-300 rounded-lg text-gray-800">
+                    </div>
+                    <input type="email" placeholder="Email (required)" name="email" required
+                        class="w-full p-3 border border-gray-300 rounded-lg text-gray-800">
+                    <button type="submit"
+                        class="w-full bg-yellow-400 text-gray-900 font-bold py-3 rounded-lg text-lg hover:bg-yellow-300 transition duration-200">
+                        Sign up now to be the first to know!
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-10 text-center text-gray-600 bg-white border-t border-gray-200" id="contact">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-2xl font-extrabold text-pp-purple mb-4" style="font-family: 'Grandiflora One', cursive;">
+                Safer Parenting. Perfectly Private.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-sm">
+                <p>Information: <a href="mailto:info@ncode.london" class="hover:text-pp-purple">info@ncode.london</a>
+                </p>
+                <p>Sales: <a href="mailto:sales@ncode.london" class="hover:text-pp-purple">sales@ncode.london</a></p>
+            </div>
+            <p class="mt-4 text-xs">
+                &copy; 2025 Purple Parrot. All rights reserved.
+                <a href="#" class="hover:text-pp-purple underline ml-2">Disclaimer</a> |
+                <a href="#" class="hover:text-pp-purple underline">Cookie Preferences</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
