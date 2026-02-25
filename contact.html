@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Contact Us | Purple Parrot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Get in touch with Purple Parrot. Sign up for early access to our privacy-first baby monitor.">
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1d1d1f;
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 400;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        .nav-logo {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8B1538;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            padding: 160px 40px 80px;
+            background: linear-gradient(180deg, #f5f5f7 0%, #fff 100%);
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+        }
+
+        .contact-hero p {
+            font-size: 1.4rem;
+            color: #86868b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 40px 120px;
+            background: #fff;
+        }
+
+        .contact-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* Signup Form */
+        .signup-card {
+            background: linear-gradient(135deg, #8B1538 0%, #6d1029 100%);
+            border-radius: 24px;
+            padding: 50px;
+            color: #fff;
+        }
+
+        .signup-card h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .signup-card > p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .signup-form input {
+            width: 100%;
+            padding: 18px 20px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .signup-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .signup-form input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .signup-form button {
+            width: 100%;
+            padding: 18px;
+            background: #fff;
+            color: #8B1538;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: inherit;
+        }
+
+        .signup-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .early-bird {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .early-bird strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Info */
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1d1d1f;
+        }
+
+        .contact-method {
+            margin-bottom: 35px;
+        }
+
+        .contact-method h3 {
+            font-size: 0.9rem;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
+        }
+
+        .contact-method p {
+            font-size: 1.2rem;
+            color: #1d1d1f;
+        }
+
+        .contact-method a {
+            color: #8B1538;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-method a:hover {
+            opacity: 0.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .social-link:hover {
+            background: #e8e8ed;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 40px;
+            background: #1d1d1f;
+            color: #fff;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .footer-brand img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact h4 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .footer-partners {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-partners img {
+            max-width: 120px;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .contact-hero {
+                padding: 140px 30px 60px;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-section {
+                padding: 60px 30px 80px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .signup-card {
+                padding: 35px;
+            }
+
+            .social-links {
+                flex-direction: column;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .footer-links a {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">Safer Parenting. Perfectly Private.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="news/index.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <button class="mobile-menu" onclick="toggleMenu()">&#9776;</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <h1>Get in Touch</h1>
+        <p>Join the waitlist or reach out to learn more about Purple Parrot.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-grid">
+            <!-- Signup Form -->
+            <div class="signup-card">
+                <h2>Join the Waitlist</h2>
+                <p>Be the first to know when Purple Parrot launches. Early supporters get exclusive benefits.</p>
+
+                <form class="signup-form" action="https://formspree.io/f/maqbrvja" method="POST">
+                    <input type="text" name="name" placeholder="Your name" required>
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <input type="hidden" name="_subject" value="New Purple Parrot Signup!">
+                    <button type="submit">Join Waitlist</button>
+                </form>
+
+                <div class="early-bird">
+                    <strong>Early Bird Benefits</strong>
+                    10% discount on RRP (estimated £300) plus the opportunity to help shape the future of private parenting.
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>Other Ways to Reach Us</h2>
+
+                <div class="contact-method">
+                    <h3>General Inquiries</h3>
+                    <p><a href="mailto:info@ncode.london">info@ncode.london</a></p>
+                </div>
+
+                <div class="contact-method">
+                    <h3>Sales</h3>
+                    <p><a href="mailto:sales@ncode.london">sales@ncode.london</a></p>
+                </div>
+
+                <div class="contact-method">
+                    <h3>Location</h3>
+                    <p>Tehnopol Startup Incubator<br>Tallinn, Estonia</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/ncode-purple-parrot/" target="_blank" rel="noopener" class="social-link">
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="Purple Parrot">
+                <p class="footer-tagline">Safer Parenting. Perfectly Private.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><strong>Information:</strong> <a href="mailto:info@ncode.london">info@ncode.london</a></p>
+                <p><strong>Sales:</strong> <a href="mailto:sales@ncode.london">sales@ncode.london</a></p>
+            </div>
+            <div class="footer-partners">
+                <img src="images/tehnopol-logo.png" alt="Tehnopol Startup Incubator">
+                <img src="images/onshape-startup-logo.png" alt="Onshape Startup Program">
+                <img src="images/uwe-logo.png" alt="UWE Bristol">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Purple Parrot. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+
+</html>

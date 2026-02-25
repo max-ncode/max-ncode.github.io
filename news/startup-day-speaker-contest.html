@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Speaker Contest Winner: Why Children's Data Isn't Safe | Purple Parrot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Max Simmonds wins sTARTUp Day's 2026 Speaker Contest with a talk on children's data privacy and the Purple Parrot solution.">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1d1d1f;
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        .nav-logo {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8B1538;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Article Header */
+        .article-header {
+            padding: 140px 40px 60px;
+            background: linear-gradient(180deg, #f5f5f7 0%, #fff 100%);
+        }
+
+        .article-header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .article-date {
+            font-size: 0.9rem;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article-tag {
+            background: #8B1538;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .article-header h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            color: #1d1d1f;
+            margin-bottom: 25px;
+        }
+
+        .article-intro {
+            font-size: 1.4rem;
+            color: #515154;
+            line-height: 1.6;
+        }
+
+        /* Hero Image */
+        .article-hero {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .article-hero img {
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+        }
+
+        .article-content p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #1d1d1f;
+            margin-bottom: 25px;
+        }
+
+        .article-content h2 {
+            font-size: 1.8rem;
+            margin: 50px 0 25px;
+            color: #1d1d1f;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid #8B1538;
+            padding-left: 25px;
+            margin: 35px 0;
+            font-style: italic;
+            color: #515154;
+            font-size: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .article-content ul {
+            margin: 25px 0;
+            padding-left: 25px;
+        }
+
+        .article-content li {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 12px;
+            color: #1d1d1f;
+        }
+
+        .article-content strong {
+            font-weight: 600;
+        }
+
+        /* External Link CTA */
+        .external-cta {
+            background: #f5f5f7;
+            border-radius: 18px;
+            padding: 40px;
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .external-cta p {
+            margin-bottom: 20px;
+            color: #515154;
+        }
+
+        .external-cta a {
+            display: inline-block;
+            padding: 16px 40px;
+            background: #8B1538;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .external-cta a:hover {
+            background: #6d1029;
+            transform: translateY(-2px);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #8B1538;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: gap 0.3s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        .back-link::before {
+            content: '\2190';
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 40px;
+            background: #1d1d1f;
+            color: #fff;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .footer-brand img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact h4 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .footer-partners {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-partners img {
+            max-width: 120px;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .article-header {
+                padding: 120px 25px 50px;
+            }
+
+            .article-header h1 {
+                font-size: 2rem;
+            }
+
+            .article-intro {
+                font-size: 1.2rem;
+            }
+
+            .article-hero {
+                padding: 0 20px;
+            }
+
+            .article-content {
+                padding: 40px 25px 80px;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .footer-links a {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-logo">Safer Parenting. Perfectly Private.</a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../products.html">Our Products</a></li>
+            <li><a href="index.html">News</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../about.html">About Us</a></li>
+        </ul>
+        <button class="mobile-menu" onclick="toggleMenu()">&#9776;</button>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header-inner">
+            <a href="index.html" class="back-link">Back to News</a>
+            <div class="article-meta">
+                <span class="article-date">February 2026</span>
+                <span class="article-tag">Featured</span>
+            </div>
+            <h1>Speaker Contest Winner: Why Children's Data Isn't Safe</h1>
+            <p class="article-intro">Max Simmonds, founder of Purple Parrot, wins sTARTUp Day's 2026 Speaker Contest with a compelling talk exposing privacy risks in connected baby monitors.</p>
+        </div>
+    </header>
+
+    <!-- Hero Image -->
+    <div class="article-hero">
+        <img src="../images/team-1.webp" alt="Max Simmonds presenting at sTARTUp Day">
+    </div>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <p>At sTARTUp Day 2026, Max Simmonds delivered a talk that resonated deeply with parents, technologists, and privacy advocates alike. His presentation on the hidden dangers of connected baby monitors earned him the top spot in the Speaker Contest, bringing critical attention to an issue that affects millions of families worldwide.</p>
+
+        <h2>The Scale of the Problem</h2>
+
+        <p>The numbers are staggering. A single connected baby monitor generates enough data in one year to form a stack of printed paper reaching halfway to the International Space Station. By the time a child turns 13, approximately <strong>72 million data points</strong> have been collected about them.</p>
+
+        <blockquote>"This data is being sold to marketers and insurance companies, or passed to third-party brokers without proper safeguards. We're creating detailed profiles of children before they can even walk."</blockquote>
+
+        <h2>From Satellites to Baby Monitors</h2>
+
+        <p>Max's journey to founding Purple Parrot is unconventional. After growing up near Oxford with a passion for engineering, he studied electrical and electronic engineering at the University of Plymouth. His career took him to some of the most prestigious institutions in aerospace:</p>
+
+        <ul>
+            <li><strong>CERN</strong> - Working on particle physics experiments</li>
+            <li><strong>European Space Agency</strong> - Contributing to space missions</li>
+            <li><strong>Open Cosmos</strong> - Building satellites</li>
+            <li><strong>Lloyds Banking Group</strong> - Applying engineering to fintech</li>
+        </ul>
+
+        <p>When Max and his Estonian wife had their first daughter, they began researching baby monitors. What they discovered shocked them: the very devices meant to protect their child were harvesting intimate family moments and monetizing them.</p>
+
+        <h2>The Purple Parrot Solution</h2>
+
+        <p>Purple Parrot represents a fundamentally different approach. The system is a hybrid that combines the privacy of traditional monitors with the intelligent features of smart devices, but with one crucial difference: <strong>data never leaves your home.</strong></p>
+
+        <p>The technology uses Edge AI, meaning all video processing occurs locally on the device hardware rather than in the cloud. This approach ensures inherent GDPR compliance while still delivering the smart features parents have come to expect.</p>
+
+        <blockquote>"We shouldn't have to choose between privacy and safety. Purple Parrot proves you can have both."</blockquote>
+
+        <h2>Overcoming Challenges</h2>
+
+        <p>Building Purple Parrot hasn't been without obstacles. The team has had to redesign AI algorithms for low-power hardware while maintaining accuracy. Sourcing European-made components has proven difficult given that chip manufacturing is dominated by China. Perhaps most importantly, they've developed their technology without using children's personal data for training.</p>
+
+        <h2>Looking Forward</h2>
+
+        <p>The vision extends beyond baby monitors. Purple Parrot is seeking medical approval for deployment in NICUs (neonatal intensive care units), where the technology could help monitor premature babies. The team is also exploring applications in elderly care monitoring systems.</p>
+
+        <p>For Max, it all comes back to purpose-driven work that creates meaningful impact for families. "We're building technology that protects the most vulnerable members of our society. That's worth fighting for."</p>
+
+        <div class="external-cta">
+            <p>Read the full interview on sTARTUp Day:</p>
+            <a href="https://www.startupday.ee/news/speaker-contest-winner-max-simmonds-on-why-children-s-data-isn-t-safe" target="_blank" rel="noopener">Read Full Article</a>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../images/logo.png" alt="Purple Parrot">
+                <p class="footer-tagline">Safer Parenting. Perfectly Private.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><strong>Information:</strong> <a href="mailto:info@ncode.london">info@ncode.london</a></p>
+                <p><strong>Sales:</strong> <a href="mailto:sales@ncode.london">sales@ncode.london</a></p>
+            </div>
+            <div class="footer-partners">
+                <img src="../images/tehnopol-logo.png" alt="Tehnopol Startup Incubator">
+                <img src="../images/onshape-startup-logo.png" alt="Onshape Startup Program">
+                <img src="../images/uwe-logo.png" alt="UWE Bristol">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Purple Parrot. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+
+</html>

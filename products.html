@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Our Products | Purple Parrot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Discover Purple Parrot - the privacy-first, intelligent baby monitor with edge AI technology.">
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1d1d1f;
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 400;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        .nav-logo {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8B1538;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .product-hero {
+            padding: 160px 40px 100px;
+            background: linear-gradient(180deg, #f5f5f7 0%, #fff 100%);
+            text-align: center;
+        }
+
+        .product-hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+        }
+
+        .product-hero .subtitle {
+            font-size: 1.5rem;
+            color: #86868b;
+            margin-bottom: 50px;
+        }
+
+        .product-hero-image {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .product-hero-image img {
+            width: 100%;
+            filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 100px 40px;
+            background: #fff;
+        }
+
+        .features-section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1d1d1f;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            color: #515154;
+            line-height: 1.7;
+        }
+
+        /* Privacy Section */
+        .privacy-section {
+            padding: 100px 40px;
+            background: #1d1d1f;
+            color: #fff;
+        }
+
+        .privacy-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .privacy-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .privacy-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .privacy-image img {
+            width: 100%;
+            border-radius: 18px;
+        }
+
+        /* Specs Section */
+        .specs-section {
+            padding: 100px 40px;
+            background: #f5f5f7;
+        }
+
+        .specs-section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1d1d1f;
+        }
+
+        .specs-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .spec-item {
+            background: #fff;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .spec-item h4 {
+            font-size: 0.9rem;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .spec-item p {
+            font-size: 1.3rem;
+            color: #1d1d1f;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #8B1538 0%, #6d1029 100%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: #fff;
+            color: #8B1538;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 40px;
+            background: #1d1d1f;
+            color: #fff;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .footer-brand img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact h4 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .footer-partners {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-partners img {
+            max-width: 120px;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .product-hero {
+                padding: 140px 30px 80px;
+            }
+
+            .product-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .privacy-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .footer-links a {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">Safer Parenting. Perfectly Private.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="news/index.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <button class="mobile-menu" onclick="toggleMenu()">&#9776;</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="product-hero">
+        <h1>Purple Parrot</h1>
+        <p class="subtitle">Privacy-first monitoring. Intelligent protection.</p>
+        <div class="product-hero-image">
+            <img src="images/purple-parrot-product.png" alt="Purple Parrot Baby Monitor">
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features-section">
+        <h2>Designed for Modern Parents</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Completely Private</h3>
+                <p>All processing happens on-device. Your data never leaves your home, ever. No cloud, no servers, no compromises.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Edge AI Intelligence</h3>
+                <p>Advanced on-board AI monitors breathing patterns, sleep quality, and alerts you to anything unusual - all processed locally.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚗</div>
+                <h3>Fully Transportable</h3>
+                <p>Take Purple Parrot anywhere - home, car, grandparents' house. Consistent monitoring wherever your family goes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🇪🇺</div>
+                <h3>GDPR Compliant</h3>
+                <p>Inherently compliant with European data protection standards because there's no data to protect - it stays with you.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Seamless Connectivity</h3>
+                <p>Connect directly to your phone via local network. Real-time video and alerts without internet dependency.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌙</div>
+                <h3>Night Vision</h3>
+                <p>Crystal clear monitoring in complete darkness. See your little one clearly, any time of day or night.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="privacy-section">
+        <div class="privacy-inner">
+            <div class="privacy-content">
+                <h2>Privacy by Design, Not Afterthought</h2>
+                <p>Traditional smart monitors send your family's most intimate moments to servers around the world. By age 13, the average child has 72 million data points collected about them.</p>
+                <p>Purple Parrot takes a fundamentally different approach. Our edge AI processes everything locally, meaning your baby's first steps, their sleep patterns, and your private conversations stay exactly where they belong - in your home.</p>
+                <p>No data brokers. No third-party access. No digital footprint before they can walk.</p>
+            </div>
+            <div class="privacy-image">
+                <img src="images/ai-generated-baby.png" alt="Private baby monitoring">
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs-section">
+        <h2>Technical Specifications</h2>
+        <div class="specs-grid">
+            <div class="spec-item">
+                <h4>Video Resolution</h4>
+                <p>1080p Full HD</p>
+            </div>
+            <div class="spec-item">
+                <h4>Night Vision</h4>
+                <p>Infrared LED Array</p>
+            </div>
+            <div class="spec-item">
+                <h4>AI Processing</h4>
+                <p>On-device Edge AI</p>
+            </div>
+            <div class="spec-item">
+                <h4>Connectivity</h4>
+                <p>Local WiFi (No Cloud)</p>
+            </div>
+            <div class="spec-item">
+                <h4>Power</h4>
+                <p>USB-C + Battery Backup</p>
+            </div>
+            <div class="spec-item">
+                <h4>Compatibility</h4>
+                <p>iOS & Android</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready for Private Parenting?</h2>
+        <p>Join our waitlist for early bird pricing and exclusive updates.</p>
+        <a href="contact.html" class="cta-btn">Get Early Access</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="Purple Parrot">
+                <p class="footer-tagline">Safer Parenting. Perfectly Private.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><strong>Information:</strong> <a href="mailto:info@ncode.london">info@ncode.london</a></p>
+                <p><strong>Sales:</strong> <a href="mailto:sales@ncode.london">sales@ncode.london</a></p>
+            </div>
+            <div class="footer-partners">
+                <img src="images/tehnopol-logo.png" alt="Tehnopol Startup Incubator">
+                <img src="images/onshape-startup-logo.png" alt="Onshape Startup Program">
+                <img src="images/uwe-logo.png" alt="UWE Bristol">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Purple Parrot. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+
+</html>

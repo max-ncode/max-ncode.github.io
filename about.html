@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>About Us | Purple Parrot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Learn about Purple Parrot - a European company building privacy-first baby monitors, founded by parents who believe you shouldn't have to choose between smart features and privacy.">
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1d1d1f;
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 400;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        .nav-logo {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8B1538;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .about-hero {
+            padding: 160px 40px 100px;
+            background: linear-gradient(180deg, #f5f5f7 0%, #fff 100%);
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 25px;
+        }
+
+        .about-hero p {
+            font-size: 1.5rem;
+            color: #515154;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Philosophy Section */
+        .philosophy-section {
+            padding: 100px 40px;
+            background: #fff;
+        }
+
+        .philosophy-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .philosophy-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #1d1d1f;
+        }
+
+        .philosophy-content p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #515154;
+            margin-bottom: 20px;
+        }
+
+        .philosophy-image img {
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 100px 40px;
+            background: #1d1d1f;
+            color: #fff;
+        }
+
+        .story-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .story-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .story-content p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+        }
+
+        .story-photos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .story-photos img {
+            width: 100%;
+            border-radius: 12px;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .story-photos img:first-child {
+            grid-column: span 2;
+            aspect-ratio: 16/9;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 100px 40px;
+            background: #f5f5f7;
+        }
+
+        .values-section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1d1d1f;
+        }
+
+        .values-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .value-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 18px;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+
+        .value-card p {
+            font-size: 1.1rem;
+            color: #515154;
+            line-height: 1.7;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            padding: 100px 40px;
+            background: #fff;
+        }
+
+        .partners-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .partners-section > p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #515154;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .partners-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .partner-item {
+            text-align: center;
+        }
+
+        .partner-item img {
+            max-width: 180px;
+            max-height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .partner-item p {
+            font-size: 0.9rem;
+            color: #86868b;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #8B1538 0%, #6d1029 100%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: #fff;
+            color: #8B1538;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 40px;
+            background: #1d1d1f;
+            color: #fff;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .footer-brand img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact h4 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .footer-partners {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-partners img {
+            max-width: 120px;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .about-hero {
+                padding: 140px 30px 80px;
+            }
+
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .philosophy-inner,
+            .story-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-grid {
+                gap: 40px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .footer-links a {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">Safer Parenting. Perfectly Private.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="news/index.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <button class="mobile-menu" onclick="toggleMenu()">&#9776;</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <h1>About Purple Parrot</h1>
+        <p>A European company with a simple philosophy: Safer Parenting. Perfectly Private.</p>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="philosophy-inner">
+            <div class="philosophy-content">
+                <h2>Our Philosophy</h2>
+                <p>We believe parents shouldn't have to choose between smart technology and their family's privacy. That's why we develop revolutionary algorithmic solutions that empower parents with comprehensive, real-time insights into their child's well-being - entirely offline.</p>
+                <p>We are dedicated to pioneering responsible technology that delivers peace of mind without compromise. We sit at the intersection of privacy and safety, proving that you can have both.</p>
+            </div>
+            <div class="philosophy-image">
+                <img src="images/startup-days.png" alt="Purple Parrot at sTARTUp Days">
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-inner">
+            <div class="story-content">
+                <h2>Made By Parents</h2>
+                <p>When we researched monitors for our first child, we were alarmed at what we discovered. The devices meant to protect our baby were harvesting intimate family moments - bedtime stories, playtime, conversations - and streaming them to servers around the world.</p>
+                <p>We built Purple Parrot because we knew there had to be a way to have smart features without the stranger danger. Our daughter inspired us to create something better, and now we're sharing it with families everywhere.</p>
+                <p>With backgrounds spanning CERN, the European Space Agency, and satellite engineering, we brought aerospace-level engineering to solve one of parenting's most overlooked problems.</p>
+            </div>
+            <div class="story-photos">
+                <img src="images/family-photo.jpg" alt="Our family">
+                <img src="images/family-photo-2.jpeg" alt="Family moments">
+                <img src="images/founders.jpg" alt="The team">
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <h2>What We Stand For</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Privacy First</h3>
+                <p>Data that never leaves your home can never be breached, sold, or misused. We don't just protect your privacy - we make surveillance impossible by design.</p>
+            </div>
+            <div class="value-card">
+                <h3>European Values</h3>
+                <p>Built in Estonia, backed by European tech leaders. We're inherently GDPR compliant because there's no data to regulate - it stays with you.</p>
+            </div>
+            <div class="value-card">
+                <h3>Purpose-Driven</h3>
+                <p>We're not building technology for its own sake. Every feature we develop serves one goal: helping parents protect and care for their children.</p>
+            </div>
+            <div class="value-card">
+                <h3>Transparent</h3>
+                <p>No hidden data collection, no complex privacy policies to decipher. Our technology is straightforward because your peace of mind should be too.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section">
+        <h2>Backed by Industry Leaders</h2>
+        <p>We're proud to be supported by leading incubators and technology programs across Europe.</p>
+        <div class="partners-grid">
+            <div class="partner-item">
+                <img src="images/tehnopol-logo.png" alt="Tehnopol Startup Incubator">
+                <p>Tehnopol Startup Incubator</p>
+            </div>
+            <div class="partner-item">
+                <img src="images/onshape-startup-logo.png" alt="Onshape Startup Program">
+                <p>Onshape Startup Program</p>
+            </div>
+            <div class="partner-item">
+                <img src="images/uwe-logo.png" alt="UWE Bristol">
+                <p>UWE Bristol</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Join Our Journey</h2>
+        <p>Be part of the movement for privacy-first parenting technology.</p>
+        <a href="contact.html" class="cta-btn">Get in Touch</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="Purple Parrot">
+                <p class="footer-tagline">Safer Parenting. Perfectly Private.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><strong>Information:</strong> <a href="mailto:info@ncode.london">info@ncode.london</a></p>
+                <p><strong>Sales:</strong> <a href="mailto:sales@ncode.london">sales@ncode.london</a></p>
+            </div>
+            <div class="footer-partners">
+                <img src="images/tehnopol-logo.png" alt="Tehnopol Startup Incubator">
+                <img src="images/onshape-startup-logo.png" alt="Onshape Startup Program">
+                <img src="images/uwe-logo.png" alt="UWE Bristol">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Purple Parrot. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+
+</html>
