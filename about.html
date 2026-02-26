@@ -10,6 +10,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Google Analytics - Only loads after consent -->
+    <script>
+        window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 Measurement ID
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -556,17 +561,62 @@
         <div class="footer-bottom">
             <p>&copy; 2025 Purple Parrot. All rights reserved.</p>
             <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Cookie Preferences</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="cookies.html">Cookies</a>
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <p>We use cookies for essential site functions and analytics. By clicking "Accept", you consent to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <a href="cookies.html" class="cookie-link">Learn more</a>
+                <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #1d1d1f; color: #fff; padding: 20px 40px; z-index: 9999; display: none; }
+        .cookie-banner.show { display: block; }
+        .cookie-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+        .cookie-content p { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; }
+        .cookie-buttons { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+        .cookie-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+        .cookie-link:hover { color: #fff; text-decoration: underline; }
+        .cookie-accept { padding: 12px 28px; background: #fff; color: #1d1d1f; border: none; border-radius: 980px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+        @media (max-width: 768px) { .cookie-content { flex-direction: column; text-align: center; gap: 20px; } }
+    </style>
 
     <script>
         function toggleMenu() {
             const links = document.querySelector('.nav-links');
             links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
         }
+        function loadGoogleAnalytics() {
+            if (window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
+                document.head.appendChild(script);
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', window.GA_MEASUREMENT_ID);
+            }
+        }
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieBanner').classList.remove('show');
+            loadGoogleAnalytics();
+        }
+        function checkCookieConsent() {
+            if (localStorage.getItem('cookiesAccepted')) { loadGoogleAnalytics(); }
+            else { document.getElementById('cookieBanner').classList.add('show'); }
+        }
+        document.addEventListener('DOMContentLoaded', checkCookieConsent);
     </script>
 </body>
 

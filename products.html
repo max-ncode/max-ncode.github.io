@@ -10,6 +10,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Google Analytics - Only loads after consent -->
+    <script>
+        window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 Measurement ID
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -134,8 +139,21 @@
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 25px;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #8B1538, #d4526e);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: #fff;
+            fill: none;
         }
 
         .feature-card h3 {
@@ -420,32 +438,44 @@
         <h2>Designed for Modern Parents</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🔒</div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
                 <h3>Completely Private</h3>
                 <p>All processing happens on-device. Your data never leaves your home, ever. No cloud, no servers, no compromises.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🧠</div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+                </div>
                 <h3>Edge AI Intelligence</h3>
                 <p>Advanced on-board AI monitors breathing patterns, sleep quality, and alerts you to anything unusual - all processed locally.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🚗</div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>
+                </div>
                 <h3>Fully Transportable</h3>
                 <p>Take Purple Parrot anywhere - home, car, grandparents' house. Consistent monitoring wherever your family goes.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🇪🇺</div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
                 <h3>GDPR Compliant</h3>
                 <p>Inherently compliant with European data protection standards because there's no data to protect - it stays with you.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📱</div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                </div>
                 <h3>Seamless Connectivity</h3>
                 <p>Connect directly to your phone via local network. Real-time video and alerts without internet dependency.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🌙</div>
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                </div>
                 <h3>Night Vision</h3>
                 <p>Crystal clear monitoring in complete darkness. See your little one clearly, any time of day or night.</p>
             </div>
@@ -526,17 +556,62 @@
         <div class="footer-bottom">
             <p>&copy; 2025 Purple Parrot. All rights reserved.</p>
             <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Cookie Preferences</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="cookies.html">Cookies</a>
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <p>We use cookies for essential site functions and analytics. By clicking "Accept", you consent to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <a href="cookies.html" class="cookie-link">Learn more</a>
+                <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #1d1d1f; color: #fff; padding: 20px 40px; z-index: 9999; display: none; }
+        .cookie-banner.show { display: block; }
+        .cookie-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+        .cookie-content p { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; }
+        .cookie-buttons { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+        .cookie-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+        .cookie-link:hover { color: #fff; text-decoration: underline; }
+        .cookie-accept { padding: 12px 28px; background: #fff; color: #1d1d1f; border: none; border-radius: 980px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+        @media (max-width: 768px) { .cookie-content { flex-direction: column; text-align: center; gap: 20px; } }
+    </style>
 
     <script>
         function toggleMenu() {
             const links = document.querySelector('.nav-links');
             links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
         }
+        function loadGoogleAnalytics() {
+            if (window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
+                document.head.appendChild(script);
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', window.GA_MEASUREMENT_ID);
+            }
+        }
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieBanner').classList.remove('show');
+            loadGoogleAnalytics();
+        }
+        function checkCookieConsent() {
+            if (localStorage.getItem('cookiesAccepted')) { loadGoogleAnalytics(); }
+            else { document.getElementById('cookieBanner').classList.add('show'); }
+        }
+        document.addEventListener('DOMContentLoaded', checkCookieConsent);
     </script>
 </body>
 

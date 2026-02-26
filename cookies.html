@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cookie Policy | Purple Parrot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Purple Parrot cookie policy - how we use cookies on our website.">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics - Only loads after consent -->
+    <script>
+        window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 Measurement ID
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1d1d1f;
+            line-height: 1.6;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 50px;
+            height: 52px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 0.85rem;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #8B1538;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.3rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .page-header {
+            padding: 120px 40px 60px;
+            background: #f5f5f7;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+        }
+
+        .content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 40px 0 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .content p {
+            font-size: 1.05rem;
+            color: #515154;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .content ul {
+            margin: 16px 0 16px 24px;
+            color: #515154;
+        }
+
+        .content li {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+
+        .content strong {
+            color: #1d1d1f;
+            font-weight: 600;
+        }
+
+        .content a {
+            color: #8B1538;
+            text-decoration: none;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        .last-updated {
+            font-size: 0.9rem;
+            color: #86868b;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #e8e8ed;
+        }
+
+        .footer {
+            padding: 60px 40px;
+            background: #1d1d1f;
+            color: #fff;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-brand p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-brand span {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-col h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .footer-bottom a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 968px) {
+            .nav {
+                padding: 0 25px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header {
+                padding: 100px 25px 50px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 40px 25px 80px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-bottom a {
+                margin: 0 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">Purple Parrot</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="news/index.html">News</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="mobile-menu" onclick="toggleMenu()">&#9776;</button>
+    </nav>
+
+    <header class="page-header">
+        <h1>Cookie Policy</h1>
+    </header>
+
+    <main class="content">
+        <h2>What Are Cookies</h2>
+        <p>Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and to provide information to the owners of the site.</p>
+
+        <h2>How We Use Cookies</h2>
+        <p>Purple Parrot uses minimal cookies to ensure our website functions properly and to improve your experience. We believe in privacy - for your children and for you.</p>
+
+        <p>We use the following types of cookies:</p>
+
+        <ul>
+            <li><strong>Essential Cookies:</strong> These are necessary for the website to function and cannot be switched off. They are usually only set in response to actions you take, such as setting your privacy preferences or filling in forms.</li>
+            <li><strong>Preference Cookies:</strong> These cookies remember your cookie consent choice so you don't have to set it every time you visit.</li>
+        </ul>
+
+        <h2>Analytics Cookies</h2>
+        <p>With your consent, we use Google Analytics to understand how visitors interact with our website. This helps us improve our content and user experience. Google Analytics collects:</p>
+        <ul>
+            <li>Pages you visit and time spent</li>
+            <li>How you arrived at our site</li>
+            <li>Your general geographic location (country/city level)</li>
+            <li>Device and browser type</li>
+        </ul>
+        <p>This data is aggregated and anonymous. We do not use it to identify individuals. Analytics cookies are only loaded after you accept our cookie banner.</p>
+
+        <h2>What We Don't Do</h2>
+        <p>In keeping with our privacy-first philosophy:</p>
+        <ul>
+            <li>We do <strong>not</strong> use advertising or remarketing cookies</li>
+            <li>We do <strong>not</strong> share any data with third parties for marketing purposes</li>
+            <li>We do <strong>not</strong> build personal profiles about your browsing activity</li>
+            <li>We do <strong>not</strong> sell any data</li>
+        </ul>
+
+        <h2>Third-Party Services</h2>
+        <p>Our contact form uses Formspree to process submissions. When you submit a form, your data is processed according to <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree's Privacy Policy</a>.</p>
+
+        <h2>Managing Cookies</h2>
+        <p>You can control and manage cookies in various ways. Most browsers allow you to:</p>
+        <ul>
+            <li>View what cookies are stored and delete them individually</li>
+            <li>Block third-party cookies</li>
+            <li>Block cookies from specific sites</li>
+            <li>Block all cookies</li>
+            <li>Delete all cookies when you close your browser</li>
+        </ul>
+        <p>Please note that blocking all cookies may affect your experience on our website.</p>
+
+        <h2>Your Consent</h2>
+        <p>By clicking "Accept" on our cookie banner, you consent to our use of essential and preference cookies as described above. You can withdraw your consent at any time by clearing your browser cookies.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have any questions about our use of cookies, please contact us at <a href="mailto:info@ncode.london">info@ncode.london</a>.</p>
+
+        <p class="last-updated">Last updated: February 2025</p>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <p>Purple Parrot</p>
+                <span>Safer Parenting. Perfectly Private.</span>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="products.html">Features</a>
+                <a href="products.html">Specifications</a>
+                <a href="contact.html">Waitlist</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="news/index.html">News</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2025 Purple Parrot. All rights reserved.</span>
+            <div>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="cookies.html">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <p>We use cookies for essential site functions and analytics. By clicking "Accept", you consent to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <a href="cookies.html" class="cookie-link">Learn more</a>
+                <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #1d1d1f; color: #fff; padding: 20px 40px; z-index: 9999; display: none; }
+        .cookie-banner.show { display: block; }
+        .cookie-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+        .cookie-content p { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; }
+        .cookie-buttons { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+        .cookie-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+        .cookie-link:hover { color: #fff; text-decoration: underline; }
+        .cookie-accept { padding: 12px 28px; background: #fff; color: #1d1d1f; border: none; border-radius: 980px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+        @media (max-width: 768px) { .cookie-content { flex-direction: column; text-align: center; gap: 20px; } }
+    </style>
+
+    <script>
+        function toggleMenu() {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+        }
+        function loadGoogleAnalytics() {
+            if (window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
+                document.head.appendChild(script);
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', window.GA_MEASUREMENT_ID);
+            }
+        }
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieBanner').classList.remove('show');
+            loadGoogleAnalytics();
+        }
+        function checkCookieConsent() {
+            if (localStorage.getItem('cookiesAccepted')) { loadGoogleAnalytics(); }
+            else { document.getElementById('cookieBanner').classList.add('show'); }
+        }
+        document.addEventListener('DOMContentLoaded', checkCookieConsent);
+    </script>
+</body>
+
+</html>
