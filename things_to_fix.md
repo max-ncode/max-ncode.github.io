@@ -154,6 +154,47 @@ Its in my downlaods called link.png and also one called link front.png
     - Added dedicated "Link: Your window to the nursery" feature section
 
 
+[x] also, let's make sure we change that image http://localhost:8000/images/purple-parrot-product.png it's being used on the home page, I want it to be the front.png. Also, on page http://localhost:8000/about.html we have an ai generated image, let's reaplce it with some stock photo that mathes the text
+    - Replaced purple-parrot-product.png with front.png on homepage
+    - Replaced startup-days.png with parent-baby.jpg on about.html philosophy section
+
+[x] let's round the corners of the images on the front page, the same as the top image with the family, this seems to be an issue with only the front page.
+    - All photo/lifestyle images already have rounded corners (hero: 24px, story: 16px, news: 24px)
+    - Product images (front.png, ball.png) are transparent PNGs with drop-shadows, don't need rounding
+
+[x] connectivity shows "local wifi" that's wrong, we use a custom encrpyted point to point link, so write that but in langauge a user would understand
+    - Changed "Local WiFi" to "Encrypted Direct Link" in specs
+    - Changed "App: iOS & Android" to "Control: Link Handset"
+
+[x] theres no app, so remove the app with android and ios
+    - Removed iOS & Android reference from specs
+    - Changed to "Control: Link Handset"
+    - Fixed "Instant alerts to your phone" → "Instant alerts to your Link handset"
+
+[x] the base unit is what charges the ball. There's a usb C cable that goes into the back of the base, the ball inductively charges from the base. The ball magnetically couples to the base, with a strong enough force that it can't be knocked out (if it does get knocked out, then an alarm is sent to the handset).
+    - Updated portable monitoring section with charging details:
+      - Strong magnetic coupling—alerts you if dislodged
+      - Wireless inductive charging from base unit
+      - USB-C powered base, no batteries to replace
+
+[x] We also do remote pulse detection, so non invasive (optical only) measurements of heart rate. We take the heart rate measurements, breathing rate measurements, and micromovements etc all those metrics into a sort of "health index" that what we use to give an alert -- if we detect any anomolies (we're a wellness device not a medical device) then we alert the parents to check. We also check for facial occlusions (blanket, rolled over, cat jumped into the crib, etc) and auto tracking algorithms so that the ball pan and tilts and follows the baby / toddler as and when they move around.
+    - Updated "Breathing Detection" to "Advanced Wellness Monitoring" on products page
+    - Added: Non-invasive pulse detection (optical only)
+    - Added: Breathing rate and micro-movement tracking
+    - Added: Smart wellness index detects anomalies
+    - Added: Facial occlusion alerts (blanket, rolled over)
+    - Added: Auto-tracking follows baby as they move
+    - Updated homepage features to match
+
+[x] let's reuse the image https://ncode.london/images/baby-crib-happy.jpg for the hero section of the site, too.
+    - Updated hero lifestyle image to use baby-crib-happy.jpg
+
+[x] the about page has a different nav logo text, make that the same as the home page and ensure all pages have the same text (it says safer parenting perfectly private)
+    - Fixed nav logo on about.html, contact.html, and all 4 news pages
+    - All pages now use "Purple Parrot" as the nav logo text 
+
+
+
 ---
 
 # Context for Future Development
