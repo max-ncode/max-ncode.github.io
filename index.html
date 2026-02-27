@@ -159,13 +159,34 @@
         }
 
         .hero-image {
-            max-width: 650px;
+            max-width: 1000px;
             width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
         }
 
-        .hero-image img {
+        .hero-lifestyle-single {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-lifestyle-single img {
             width: 100%;
-            filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.15));
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-product img {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 40px 80px rgba(107, 91, 149, 0.2));
         }
 
         /* Section Base */
@@ -207,7 +228,7 @@
         /* Problem Section */
         .problem-section {
             padding: 140px 40px;
-            background: #1d1d1f;
+            background: linear-gradient(135deg, #6B5B95 0%, #8B1538 100%);
             color: #fff;
         }
 
@@ -293,10 +314,72 @@
             margin-top: 20px;
         }
 
+        /* Portable Section */
+        .portable-section {
+            padding: 140px 40px;
+            background: #fff;
+        }
+
+        .portable-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .portable-content h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 24px;
+            line-height: 1.15;
+        }
+
+        .portable-content p {
+            font-size: 1.15rem;
+            color: #515154;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .portable-list {
+            list-style: none;
+        }
+
+        .portable-list li {
+            font-size: 1.05rem;
+            color: #1d1d1f;
+            padding: 10px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .portable-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, #6B5B95, #8B1538);
+            border-radius: 50%;
+        }
+
+        .portable-image img {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 30px 60px rgba(107, 91, 149, 0.2));
+        }
+
         /* Features Grid */
         .features-section {
             padding: 140px 40px;
-            background: #f5f5f7;
+            background: #F3EFF8;
         }
 
         .features-grid {
@@ -399,7 +482,7 @@
         /* News Section */
         .news-section {
             padding: 140px 40px;
-            background: #f5f5f7;
+            background: #F3EFF8;
         }
 
         .news-inner {
@@ -480,7 +563,7 @@
         /* CTA Section */
         .cta-section {
             padding: 160px 40px;
-            background: linear-gradient(135deg, #8B1538 0%, #5a0d24 100%);
+            background: linear-gradient(135deg, #6B5B95 0%, #4A3F6B 100%);
             text-align: center;
             color: #fff;
         }
@@ -591,7 +674,7 @@
         /* Footer */
         .footer {
             padding: 60px 40px;
-            background: #1d1d1f;
+            background: #2D2640;
             color: #fff;
         }
 
@@ -681,6 +764,19 @@
                 align-items: center;
             }
 
+            .hero-image {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-lifestyle-single img {
+                height: 280px;
+            }
+
+            .hero-product img {
+                max-width: 280px;
+            }
+
             .section {
                 padding: 80px 25px;
             }
@@ -701,6 +797,16 @@
             }
 
             .product-image {
+                order: -1;
+            }
+
+            .portable-inner {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .portable-image {
                 order: -1;
             }
 
@@ -763,24 +869,29 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <span class="hero-eyebrow">Introducing Purple Parrot</span>
-        <h1>Privacy-first baby monitoring.</h1>
-        <p class="hero-subtitle">The intelligent monitor that keeps your family's data exactly where it belongs. At home.</p>
+        <span class="hero-eyebrow">Engineered for Peace of Mind</span>
+        <h1>The most advanced private baby monitor ever made.</h1>
+        <p class="hero-subtitle">Precision-engineered with on-device AI. No cloud. No compromises. Just complete peace of mind—at home, in the car, or on the go.</p>
         <div class="hero-cta">
             <a href="contact.html" class="btn-primary">Join Waitlist</a>
             <a href="products.html" class="btn-secondary">Learn More</a>
         </div>
         <div class="hero-image">
-            <img src="images/purple-parrot-product.png" alt="Purple Parrot Baby Monitor">
+            <div class="hero-lifestyle-single">
+                <img src="images/hero-mother-baby.jpg" alt="Mother holding baby in lavender field">
+            </div>
+            <div class="hero-product">
+                <img src="images/front.png" alt="Purple Parrot Baby Monitor">
+            </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
+    <!-- Peace of Mind Section -->
     <section class="problem-section">
         <div class="problem-inner">
-            <div class="problem-stat">72M</div>
-            <h2>Data points collected about the average child by age 13.</h2>
-            <p>Cloud-connected baby monitors stream your family's most intimate moments to servers worldwide. Conversations, routines, sleep patterns—all harvested, stored, and sold.</p>
+            <div class="problem-stat">100%</div>
+            <h2>Peace of mind, every single night.</h2>
+            <p>Real-time breathing detection, sleep tracking, and instant alerts—so you can rest easy knowing your little one is safe and sound.</p>
         </div>
     </section>
 
@@ -792,11 +903,30 @@
                     <img src="images/purple-parrot-product.png" alt="Purple Parrot Monitor">
                 </div>
                 <div class="product-content">
-                    <h2>Smart monitoring. Zero cloud.</h2>
-                    <p>Purple Parrot uses on-device Edge AI to deliver intelligent monitoring without ever sending data to the cloud. Breathing detection, sleep analysis, and instant alerts—all processed locally.</p>
-                    <p>Your baby's first steps stay in your family. Not on a server in another country.</p>
+                    <h2>Better sleep for baby. Better sleep for you.</h2>
+                    <p>Purple Parrot watches over your little one so you don't have to. Intelligent breathing detection alerts you only when it matters—no false alarms, no constant worry.</p>
+                    <p>Wake up refreshed, knowing you'll always be there when your baby needs you.</p>
                     <a href="products.html" class="btn-primary">Explore Features</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portable Section -->
+    <section class="portable-section">
+        <div class="portable-inner">
+            <div class="portable-content">
+                <h2>Protection that travels with you.</h2>
+                <p>The Purple Parrot's monitoring ball detaches from the base and clips magnetically to your car seat or pram—giving you the same intelligent monitoring on every journey.</p>
+                <ul class="portable-list">
+                    <li>Magnetic mount for car seats</li>
+                    <li>Pram-compatible design</li>
+                    <li>Seamless handoff from home to car</li>
+                    <li>Same breathing detection everywhere</li>
+                </ul>
+            </div>
+            <div class="portable-image">
+                <img src="images/ball.png" alt="Purple Parrot detachable monitoring ball">
             </div>
         </div>
     </section>
@@ -804,51 +934,51 @@
     <!-- Features Section -->
     <section class="features-section">
         <div class="section-header">
-            <h2>Built different.</h2>
-            <p>Every feature designed with privacy at its core.</p>
+            <h2>Everything you need. Nothing you don't.</h2>
+            <p>Designed around what matters most to parents.</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                 </div>
-                <h3>100% Private</h3>
-                <p>Data never leaves your home. No cloud, no servers, no compromises.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
-                </div>
-                <h3>Edge AI</h3>
-                <p>Advanced intelligence processed entirely on-device.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>
-                </div>
-                <h3>Portable</h3>
-                <p>Seamless monitoring at home, in the car, or on the go.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                </div>
-                <h3>GDPR Native</h3>
-                <p>Inherently compliant. No data to regulate.</p>
+                <h3>Breathing Detection</h3>
+                <p>Rest easy knowing you'll be alerted if anything seems off with your baby's breathing.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
                 </div>
-                <h3>Night Vision</h3>
-                <p>Crystal clear monitoring in complete darkness.</p>
+                <h3>Sleep Tracking</h3>
+                <p>Understand your baby's sleep patterns and build better routines for the whole family.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 </div>
                 <h3>Instant Alerts</h3>
-                <p>Real-time notifications without internet latency.</p>
+                <p>Get notified immediately when your baby needs you—no delays, no missed moments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <h3>Crystal Clear Video</h3>
+                <p>See your little one clearly day or night with HD video and infrared night vision.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>
+                </div>
+                <h3>Car & Pram Ready</h3>
+                <p>Detach the monitoring ball and clip it to your car seat or pram. Same protection, wherever you go.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <h3>Completely Private</h3>
+                <p>Your family's moments stay yours. No cloud uploads, no data collection, ever.</p>
             </div>
         </div>
     </section>
@@ -863,8 +993,8 @@
             </div>
             <div class="story-content">
                 <h2>Made by parents, for parents.</h2>
-                <p>When we researched monitors for our first child, we discovered something alarming. The devices meant to protect our baby were harvesting our most intimate moments.</p>
-                <p>We built Purple Parrot because we knew there had to be a better way. Smart features without the stranger danger.</p>
+                <p>We know the feeling. Checking on your baby five times a night. Lying awake wondering if they're okay. That constant background worry that never quite goes away.</p>
+                <p>We built Purple Parrot so parents can actually rest—with smart monitoring that watches over your little one, and privacy that keeps your family's moments truly private.</p>
                 <a href="about.html" class="news-link">Our story</a>
             </div>
         </div>
@@ -890,14 +1020,14 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-inner">
-            <h2>Ready for private parenting?</h2>
-            <p>Join the waitlist for early access and exclusive launch pricing.</p>
+            <h2>Ready for more peaceful nights?</h2>
+            <p>Join thousands of parents waiting to experience worry-free monitoring.</p>
             <form class="cta-form" action="https://formspree.io/f/maqbrvja" method="POST">
                 <input type="email" name="email" placeholder="Enter your email" required>
                 <input type="hidden" name="_subject" value="New Purple Parrot Signup!">
                 <button type="submit">Join Waitlist</button>
             </form>
-            <p class="cta-note">Early supporters receive 10% off RRP (est. £300)</p>
+            <p class="cta-note">Be first to know when Purple Parrot launches</p>
         </div>
     </section>
 

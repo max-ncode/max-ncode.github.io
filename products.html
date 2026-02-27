@@ -3,16 +3,15 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Our Products | Purple Parrot</title>
+    <title>Purple Parrot | Privacy-First Smart Baby Monitor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Discover Purple Parrot - the privacy-first, intelligent baby monitor with edge AI technology.">
+    <meta name="description" content="Purple Parrot - the intelligent baby monitor with breathing detection, sleep tracking, and complete privacy. No cloud, no subscriptions.">
     <link rel="icon" type="image/png" href="images/logo.png">
-
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Google Analytics - Only loads after consent -->
     <script>
-        window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 Measurement ID
+        window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
     </script>
 
     <style>
@@ -23,51 +22,51 @@
         }
 
         body {
-            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: #1d1d1f;
-            line-height: 1.6;
+            line-height: 1.5;
             background: #fff;
+            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3 {
-            font-family: 'Libre Baskerville', Georgia, serif;
-            font-weight: 400;
-        }
-
+        /* Navigation */
         .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 20px 40px;
+            padding: 0 50px;
+            height: 52px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(251, 251, 253, 0.8);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .nav-logo {
-            font-family: 'Libre Baskerville', serif;
             font-size: 1.1rem;
+            font-weight: 600;
             color: #1d1d1f;
             text-decoration: none;
+            letter-spacing: -0.02em;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #1d1d1f;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 400;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
@@ -76,107 +75,196 @@
 
         .mobile-menu {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             background: none;
             border: none;
             cursor: pointer;
+            padding: 10px;
         }
 
-        /* Hero Section */
+        /* Product Hero */
         .product-hero {
-            padding: 160px 40px 100px;
+            padding: 100px 40px 80px;
             background: linear-gradient(180deg, #f5f5f7 0%, #fff 100%);
-            text-align: center;
         }
 
-        .product-hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            color: #1d1d1f;
-            margin-bottom: 20px;
-        }
-
-        .product-hero .subtitle {
-            font-size: 1.5rem;
-            color: #86868b;
-            margin-bottom: 50px;
-        }
-
-        .product-hero-image {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .product-hero-image img {
-            width: 100%;
-            filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.2));
-        }
-
-        /* Features Grid */
-        .features-section {
-            padding: 100px 40px;
-            background: #fff;
-        }
-
-        .features-section h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: #1d1d1f;
-        }
-
-        .features-grid {
+        .product-hero-inner {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
 
-        .feature-card {
+        .product-gallery {
+            position: relative;
+        }
+
+        .product-main-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 40px 80px rgba(107, 91, 149, 0.25));
+        }
+
+        .product-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .product-thumbnail {
+            width: 65px;
+            height: 65px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            padding: 6px;
+            background: #f5f5f7;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .product-thumbnail:hover,
+        .product-thumbnail.active {
+            border-color: #6B5B95;
+        }
+
+        .product-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-info h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+
+        .product-tagline {
+            font-size: 1.3rem;
+            color: #86868b;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-price-note {
+            font-size: 0.95rem;
+            color: #86868b;
+            margin-bottom: 30px;
+        }
+
+        .product-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 320px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 18px 32px;
+            background: #8B1538;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 980px;
             text-align: center;
-            padding: 40px 30px;
+            transition: all 0.2s;
         }
 
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            margin: 0 auto 25px;
+        .btn-primary:hover {
+            background: #6d1029;
+        }
+
+        .no-subscription {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #1d1d1f;
+            margin-top: 20px;
+        }
+
+        .no-subscription svg {
+            width: 20px;
+            height: 20px;
+            stroke: #34C759;
+            fill: none;
+        }
+
+        /* Key Features Bar */
+        .key-features {
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #6B5B95 0%, #8B1538 100%);
+        }
+
+        .key-features-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+        }
+
+        .key-feature {
+            text-align: center;
+            color: #fff;
+        }
+
+        .key-feature-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
             background: linear-gradient(135deg, #8B1538, #d4526e);
-            border-radius: 14px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .feature-icon svg {
-            width: 28px;
-            height: 28px;
+        .key-feature-icon svg {
+            width: 24px;
+            height: 24px;
             stroke: #fff;
             fill: none;
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #1d1d1f;
+        .key-feature h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
         }
 
-        .feature-card p {
-            font-size: 1.1rem;
-            color: #515154;
-            line-height: 1.7;
+        .key-feature p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Privacy Section */
-        .privacy-section {
-            padding: 100px 40px;
-            background: #1d1d1f;
-            color: #fff;
+        /* Feature Sections */
+        .feature-section {
+            padding: 120px 40px;
         }
 
-        .privacy-inner {
-            max-width: 1200px;
+        .feature-section:nth-child(even) {
+            background: #f5f5f7;
+        }
+
+        .feature-inner {
+            max-width: 1100px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -184,106 +272,215 @@
             align-items: center;
         }
 
-        .privacy-content h2 {
-            font-size: 2.8rem;
-            margin-bottom: 30px;
-            color: #fff;
+        .feature-inner.reverse {
+            direction: rtl;
         }
 
-        .privacy-content p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
+        .feature-inner.reverse > * {
+            direction: ltr;
         }
 
-        .privacy-image img {
+        .feature-image img {
             width: 100%;
-            border-radius: 18px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+
+        .feature-content p {
+            font-size: 1.15rem;
+            color: #515154;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1.05rem;
+            color: #1d1d1f;
+            margin-bottom: 14px;
+        }
+
+        .feature-list svg {
+            width: 22px;
+            height: 22px;
+            stroke: #8B1538;
+            fill: none;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
         /* Specs Section */
         .specs-section {
             padding: 100px 40px;
-            background: #f5f5f7;
+            background: #fff;
         }
 
-        .specs-section h2 {
-            font-size: 3rem;
+        .specs-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .specs-header {
             text-align: center;
             margin-bottom: 60px;
-            color: #1d1d1f;
+        }
+
+        .specs-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
         }
 
         .specs-grid {
-            max-width: 900px;
-            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
-        .spec-item {
-            background: #fff;
+        .spec-card {
+            background: #f5f5f7;
             padding: 30px;
             border-radius: 18px;
+            text-align: center;
         }
 
-        .spec-item h4 {
-            font-size: 0.9rem;
+        .spec-card h4 {
+            font-size: 0.85rem;
             color: #86868b;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
         }
 
-        .spec-item p {
-            font-size: 1.3rem;
-            color: #1d1d1f;
+        .spec-card p {
+            font-size: 1.2rem;
             font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        /* Privacy Promise */
+        .privacy-section {
+            padding: 120px 40px;
+            background: linear-gradient(135deg, #6B5B95 0%, #4A3F6B 100%);
+            color: #fff;
+        }
+
+        .privacy-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .privacy-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #8B1538, #d4526e);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .privacy-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: #fff;
+            fill: none;
+        }
+
+        .privacy-inner h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 20px;
+        }
+
+        .privacy-inner p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .privacy-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .privacy-badge {
+            text-align: center;
+        }
+
+        .privacy-badge-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .privacy-badge-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: #fff;
+            fill: none;
+        }
+
+        .privacy-badge span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* CTA Section */
         .cta-section {
-            padding: 100px 40px;
-            background: linear-gradient(135deg, #8B1538 0%, #6d1029 100%);
+            padding: 120px 40px;
+            background: #F3EFF8;
             text-align: center;
-            color: #fff;
         }
 
-        .cta-section h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #fff;
+        .cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .cta-section p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.9);
+        .cta-inner h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 16px;
         }
 
-        .cta-btn {
-            display: inline-block;
-            padding: 18px 50px;
-            background: #fff;
-            color: #8B1538;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 30px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .cta-inner p {
+            font-size: 1.15rem;
+            color: #515154;
+            margin-bottom: 30px;
         }
 
         /* Footer */
         .footer {
             padding: 60px 40px;
-            background: #1d1d1f;
+            background: #2D2640;
             color: #fff;
         }
 
@@ -291,73 +488,69 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 40px;
-            align-items: start;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
         }
 
-        .footer-brand img {
-            max-width: 150px;
-            margin-bottom: 20px;
-        }
-
-        .footer-tagline {
-            font-family: 'Libre Baskerville', serif;
+        .footer-brand p {
             font-size: 1.3rem;
-            margin-bottom: 20px;
-        }
-
-        .footer-contact h4 {
-            font-size: 1rem;
-            margin-bottom: 15px;
             font-weight: 600;
+            margin-bottom: 12px;
         }
 
-        .footer-contact p {
-            margin-bottom: 10px;
+        .footer-brand span {
             font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        .footer-contact a {
+        .footer-col h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col a {
+            display: block;
             color: #fff;
-            text-decoration: underline;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
         }
 
-        .footer-partners {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .footer-partners img {
-            max-width: 120px;
-            max-height: 60px;
-            object-fit: contain;
+        .footer-col a:hover {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .footer-bottom {
             max-width: 1200px;
             margin: 40px auto 0;
             padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: space-between;
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.5);
             text-decoration: none;
-            margin-left: 20px;
+            margin-left: 25px;
         }
 
-        .footer-links a:hover {
+        .footer-bottom a:hover {
             color: #fff;
         }
 
+        /* Responsive */
         @media (max-width: 968px) {
+            .nav {
+                padding: 0 25px;
+            }
+
             .nav-links {
                 display: none;
             }
@@ -367,29 +560,55 @@
             }
 
             .product-hero {
-                padding: 140px 30px 80px;
+                padding: 80px 25px 60px;
             }
 
-            .product-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .privacy-inner {
+            .product-hero-inner {
                 grid-template-columns: 1fr;
                 gap: 40px;
+                text-align: center;
+            }
+
+            .product-info h1 {
+                font-size: 2.2rem;
+            }
+
+            .product-cta {
+                max-width: 100%;
+            }
+
+            .key-features-inner {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .feature-section {
+                padding: 80px 25px;
+            }
+
+            .feature-inner,
+            .feature-inner.reverse {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                direction: ltr;
+            }
+
+            .feature-content h2 {
+                font-size: 2rem;
             }
 
             .specs-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .privacy-badges {
+                flex-wrap: wrap;
+                gap: 30px;
             }
 
             .footer-inner {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 40px;
             }
 
             .footer-bottom {
@@ -398,14 +617,18 @@
                 text-align: center;
             }
 
-            .footer-links {
-                display: flex;
-                justify-content: center;
-                gap: 15px;
+            .footer-bottom a {
+                margin: 0 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .key-features-inner {
+                grid-template-columns: 1fr;
             }
 
-            .footer-links a {
-                margin: 0;
+            .specs-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -413,71 +636,241 @@
 
 <body>
     <nav class="nav">
-        <a href="index.html" class="nav-logo">Safer Parenting. Perfectly Private.</a>
+        <a href="index.html" class="nav-logo">Purple Parrot</a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Our Products</a></li>
+            <li><a href="products.html">Products</a></li>
             <li><a href="news/index.html">News</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="about.html">About Us</a></li>
         </ul>
         <button class="mobile-menu" onclick="toggleMenu()">&#9776;</button>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Product Hero -->
     <section class="product-hero">
-        <h1>Purple Parrot</h1>
-        <p class="subtitle">Privacy-first monitoring. Intelligent protection.</p>
-        <div class="product-hero-image">
-            <img src="images/purple-parrot-product.png" alt="Purple Parrot Baby Monitor">
+        <div class="product-hero-inner">
+            <div class="product-gallery">
+                <img src="images/front.png" alt="Purple Parrot Baby Monitor" class="product-main-image" id="mainProductImage">
+                <div class="product-thumbnails">
+                    <div class="product-thumbnail active" onclick="changeImage('images/front.png', this)">
+                        <img src="images/front.png" alt="Front view">
+                    </div>
+                    <div class="product-thumbnail" onclick="changeImage('images/back.png', this)">
+                        <img src="images/back.png" alt="Back view">
+                    </div>
+                    <div class="product-thumbnail" onclick="changeImage('images/base.png', this)">
+                        <img src="images/base.png" alt="Base unit">
+                    </div>
+                    <div class="product-thumbnail" onclick="changeImage('images/ball.png', this)">
+                        <img src="images/ball.png" alt="Monitoring ball">
+                    </div>
+                    <div class="product-thumbnail" onclick="changeImage('images/ball_side.png', this)">
+                        <img src="images/ball_side.png" alt="Ball side view">
+                    </div>
+                    <div class="product-thumbnail" onclick="changeImage('images/ball_back.png', this)">
+                        <img src="images/ball_back.png" alt="Ball back view">
+                    </div>
+                    <div class="product-thumbnail" onclick="changeImage('images/link.png', this)">
+                        <img src="images/link.png" alt="Link handset">
+                    </div>
+                    <div class="product-thumbnail" onclick="changeImage('images/Link_front.png', this)">
+                        <img src="images/Link_front.png" alt="Link handset front">
+                    </div>
+                </div>
+            </div>
+            <div class="product-info">
+                <h1>Purple Parrot</h1>
+                <p class="product-tagline">The smart baby monitor that gives you peace of mind—at home, in the car, or on the go. Complete privacy, total portability.</p>
+                <p class="product-price">£299</p>
+                <p class="product-price-note">Free UK shipping • 30-day returns</p>
+                <div class="product-cta">
+                    <a href="contact.html" class="btn-primary">Join Waitlist</a>
+                </div>
+                <div class="no-subscription">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>No subscription required. Ever.</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Features Grid -->
-    <section class="features-section">
-        <h2>Designed for Modern Parents</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <!-- Key Features Bar -->
+    <section class="key-features">
+        <div class="key-features-inner">
+            <div class="key-feature">
+                <div class="key-feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                 </div>
-                <h3>Completely Private</h3>
-                <p>All processing happens on-device. Your data never leaves your home, ever. No cloud, no servers, no compromises.</p>
+                <h3>Breathing Detection</h3>
+                <p>Real-time monitoring</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
-                </div>
-                <h3>Edge AI Intelligence</h3>
-                <p>Advanced on-board AI monitors breathing patterns, sleep quality, and alerts you to anything unusual - all processed locally.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>
-                </div>
-                <h3>Fully Transportable</h3>
-                <p>Take Purple Parrot anywhere - home, car, grandparents' house. Consistent monitoring wherever your family goes.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                </div>
-                <h3>GDPR Compliant</h3>
-                <p>Inherently compliant with European data protection standards because there's no data to protect - it stays with you.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-                </div>
-                <h3>Seamless Connectivity</h3>
-                <p>Connect directly to your phone via local network. Real-time video and alerts without internet dependency.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
+            <div class="key-feature">
+                <div class="key-feature-icon">
                     <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
                 </div>
-                <h3>Night Vision</h3>
-                <p>Crystal clear monitoring in complete darkness. See your little one clearly, any time of day or night.</p>
+                <h3>Sleep Tracking</h3>
+                <p>Understand patterns</p>
+            </div>
+            <div class="key-feature">
+                <div class="key-feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <h3>100% Private</h3>
+                <p>No cloud uploads</p>
+            </div>
+            <div class="key-feature">
+                <div class="key-feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <h3>Instant Alerts</h3>
+                <p>No delays</p>
+            </div>
+            <div class="key-feature">
+                <div class="key-feature-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>
+                </div>
+                <h3>Car & Pram Ready</h3>
+                <p>Take it anywhere</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: Breathing Detection -->
+    <section class="feature-section">
+        <div class="feature-inner">
+            <div class="feature-image">
+                <img src="images/baby-sleeping.jpg" alt="Baby sleeping peacefully">
+            </div>
+            <div class="feature-content">
+                <h2>Rest easy with breathing detection</h2>
+                <p>Purple Parrot's advanced sensors continuously monitor your baby's breathing patterns while they sleep. If anything seems off, you'll know immediately.</p>
+                <ul class="feature-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Continuous monitoring while baby sleeps
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Instant alerts to your phone
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        No false alarms from normal movements
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: Sleep Tracking -->
+    <section class="feature-section">
+        <div class="feature-inner reverse">
+            <div class="feature-image">
+                <img src="images/parent-baby.jpg" alt="Parent with happy baby">
+            </div>
+            <div class="feature-content">
+                <h2>Understand your baby's sleep</h2>
+                <p>Track sleep cycles, see when your baby is in deep sleep or stirring, and build better routines for the whole family.</p>
+                <ul class="feature-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Deep sleep vs light sleep tracking
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Movement and wake pattern history
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Insights to improve sleep routines
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: HD Video -->
+    <section class="feature-section">
+        <div class="feature-inner">
+            <div class="feature-image">
+                <img src="images/baby-crib-happy.jpg" alt="Baby in nursery">
+            </div>
+            <div class="feature-content">
+                <h2>Crystal clear, day and night</h2>
+                <p>See your little one in stunning 1080p HD video with automatic infrared night vision. Check in anytime without disturbing their sleep.</p>
+                <ul class="feature-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        1080p Full HD video
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Infrared night vision
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Two-way audio to soothe from anywhere
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: Portable Monitoring -->
+    <section class="feature-section">
+        <div class="feature-inner reverse">
+            <div class="feature-image">
+                <img src="images/ball.png" alt="Purple Parrot monitoring ball">
+            </div>
+            <div class="feature-content">
+                <h2>Monitoring that moves with you</h2>
+                <p>The Purple Parrot's monitoring ball detaches from the base and clips magnetically to your car seat or pram. Same intelligent protection, wherever your journey takes you.</p>
+                <ul class="feature-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Magnetic car seat mount included
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Pram and pushchair compatible
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Same breathing detection on the go
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: Link Handset -->
+    <section class="feature-section">
+        <div class="feature-inner">
+            <div class="feature-image">
+                <img src="images/link.png" alt="Purple Parrot Link handset">
+            </div>
+            <div class="feature-content">
+                <h2>Link: Your window to the nursery</h2>
+                <p>The Link handset comes included with every Purple Parrot. Receive instant alerts, watch live video, and check on your baby—all without needing your phone.</p>
+                <ul class="feature-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Real-time video streaming
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Alerts when breathing or movement issues detected
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Works without WiFi or internet
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Included with every Purple Parrot
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
@@ -485,77 +878,102 @@
     <!-- Privacy Section -->
     <section class="privacy-section">
         <div class="privacy-inner">
-            <div class="privacy-content">
-                <h2>Privacy by Design, Not Afterthought</h2>
-                <p>Traditional smart monitors send your family's most intimate moments to servers around the world. By age 13, the average child has 72 million data points collected about them.</p>
-                <p>Purple Parrot takes a fundamentally different approach. Our edge AI processes everything locally, meaning your baby's first steps, their sleep patterns, and your private conversations stay exactly where they belong - in your home.</p>
-                <p>No data brokers. No third-party access. No digital footprint before they can walk.</p>
+            <div class="privacy-icon">
+                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             </div>
-            <div class="privacy-image">
-                <img src="images/ai-generated-baby.png" alt="Private baby monitoring">
+            <h2>Your family's privacy. Protected.</h2>
+            <p>Unlike other smart monitors, Purple Parrot processes everything on-device using Edge AI. Your baby's video, audio, and data never leave your home.</p>
+            <p>No cloud servers. No data harvesting. No strangers watching your nursery.</p>
+            <div class="privacy-badges">
+                <div class="privacy-badge">
+                    <div class="privacy-badge-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <span>No Cloud Required</span>
+                </div>
+                <div class="privacy-badge">
+                    <div class="privacy-badge-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+                    </div>
+                    <span>On-Device AI</span>
+                </div>
+                <div class="privacy-badge">
+                    <div class="privacy-badge-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <span>GDPR Compliant</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Specs Section -->
     <section class="specs-section">
-        <h2>Technical Specifications</h2>
-        <div class="specs-grid">
-            <div class="spec-item">
-                <h4>Video Resolution</h4>
-                <p>1080p Full HD</p>
+        <div class="specs-inner">
+            <div class="specs-header">
+                <h2>Technical Specifications</h2>
             </div>
-            <div class="spec-item">
-                <h4>Night Vision</h4>
-                <p>Infrared LED Array</p>
-            </div>
-            <div class="spec-item">
-                <h4>AI Processing</h4>
-                <p>On-device Edge AI</p>
-            </div>
-            <div class="spec-item">
-                <h4>Connectivity</h4>
-                <p>Local WiFi (No Cloud)</p>
-            </div>
-            <div class="spec-item">
-                <h4>Power</h4>
-                <p>USB-C + Battery Backup</p>
-            </div>
-            <div class="spec-item">
-                <h4>Compatibility</h4>
-                <p>iOS & Android</p>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>Video</h4>
+                    <p>1080p Full HD</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Night Vision</h4>
+                    <p>Infrared LED</p>
+                </div>
+                <div class="spec-card">
+                    <h4>AI Processing</h4>
+                    <p>On-Device Edge AI</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Connectivity</h4>
+                    <p>Local WiFi</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Power</h4>
+                    <p>USB-C + Battery</p>
+                </div>
+                <div class="spec-card">
+                    <h4>App</h4>
+                    <p>iOS & Android</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <h2>Ready for Private Parenting?</h2>
-        <p>Join our waitlist for early bird pricing and exclusive updates.</p>
-        <a href="contact.html" class="cta-btn">Get Early Access</a>
+        <div class="cta-inner">
+            <h2>Ready for peaceful nights?</h2>
+            <p>Join the waitlist to be first to know when Purple Parrot launches.</p>
+            <a href="contact.html" class="btn-primary">Join Waitlist</a>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
-                <img src="images/logo.png" alt="Purple Parrot">
-                <p class="footer-tagline">Safer Parenting. Perfectly Private.</p>
+                <p>Purple Parrot</p>
+                <span>Safer Parenting. Perfectly Private.</span>
             </div>
-            <div class="footer-contact">
-                <h4>Contact</h4>
-                <p><strong>Information:</strong> <a href="mailto:info@ncode.london">info@ncode.london</a></p>
-                <p><strong>Sales:</strong> <a href="mailto:sales@ncode.london">sales@ncode.london</a></p>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="products.html">Features</a>
+                <a href="products.html#specs">Specifications</a>
+                <a href="contact.html">Waitlist</a>
             </div>
-            <div class="footer-partners">
-                <img src="images/tehnopol-logo.png" alt="Tehnopol Startup Incubator">
-                <img src="images/onshape-startup-logo.png" alt="Onshape Startup Program">
-                <img src="images/uwe-logo.png" alt="UWE Bristol">
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="news/index.html">News</a>
+                <a href="contact.html">Contact</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Purple Parrot. All rights reserved.</p>
-            <div class="footer-links">
+            <span>&copy; 2025 Purple Parrot. All rights reserved.</span>
+            <div>
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="cookies.html">Cookies</a>
             </div>
@@ -589,6 +1007,11 @@
         function toggleMenu() {
             const links = document.querySelector('.nav-links');
             links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+        }
+        function changeImage(src, thumbnail) {
+            document.getElementById('mainProductImage').src = src;
+            document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
         }
         function loadGoogleAnalytics() {
             if (window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
