@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple Parrot — 6-Month Interim Evaluation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #6B21A8;
+    --purple-mid: #7C3AED;
+    --purple-light: #A855F7;
+    --lavender: #EDE9FE;
+    --lavender-mid: #DDD6FE;
+    --text: #1a1a2e;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --green: #16a34a;
+    --red: #dc2626;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #111; color: var(--text); overflow: hidden; height: 100vh; width: 100vw; }
+  .deck { width: 100%; height: 100%; position: relative; }
+  .slide { position: absolute; inset: 0; width: 100%; height: 100%; display: flex; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; background: white; }
+  .slide.active { opacity: 1; pointer-events: all; }
+
+  #nav { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 999px; z-index: 100; color: white; font-size: 13px; font-weight: 500; }
+  #nav button { background: rgba(255,255,255,0.15); border: none; color: white; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  #nav button:hover { background: rgba(255,255,255,0.3); }
+  #progress-dots { display: flex; gap: 5px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+  .dot.active { background: white; transform: scale(1.3); }
+
+  .col { display: flex; flex-direction: column; }
+  .row { display: flex; flex-direction: row; }
+  .slide-logo { position: absolute; bottom: 28px; left: 36px; height: 26px; opacity: 0.6; }
+  .slide-num { position: absolute; bottom: 30px; right: 36px; font-size: 12px; color: #aaa; font-weight: 500; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); background: var(--lavender); padding: 4px 10px; border-radius: 4px; margin-bottom: 14px; }
+  h2.section { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 800; line-height: 1.15; }
+  p.lead { font-size: clamp(0.95rem, 1.6vw, 1.2rem); color: var(--text-light); line-height: 1.6; }
+  p.body { font-size: 0.92rem; color: var(--text-light); line-height: 1.6; }
+  .highlight { color: var(--purple); }
+  .card { background: var(--lavender); border-radius: 14px; padding: 20px 22px; flex: 1; }
+  .stat-block { background: var(--lavender); border-radius: 16px; padding: 18px 20px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+  .stat-block .num { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900; color: var(--purple); line-height: 1; margin-bottom: 6px; }
+  .stat-block .label { font-size: 0.75rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; }
+  ul.styled { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  ul.styled li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.88rem; line-height: 1.5; }
+  ul.styled li::before { content: "→"; color: var(--purple); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  ul.check { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  ul.check li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.88rem; line-height: 1.5; }
+  ul.check li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+  ul.cross { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  ul.cross li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.88rem; line-height: 1.5; }
+  ul.cross li::before { content: "✗"; color: var(--red); font-weight: 700; flex-shrink: 0; }
+
+  /* ── SLIDE 1: TITLE ── */
+  #s1 { background: linear-gradient(135deg, #1a0533 0%, #3b0764 50%, #1a0533 100%); color: white; overflow: hidden; }
+  #s1 .left { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 60px 64px; position: relative; z-index: 2; }
+  #s1 .right { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  #s1 .right img.hero { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.85; }
+  #s1 .right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #3b0764 0%, transparent 30%); }
+  #s1 .batch-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; color: rgba(255,255,255,0.9); margin-bottom: 24px; width: fit-content; }
+  #s1 h1 { font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 900; line-height: 1.05; margin-bottom: 20px; }
+  #s1 .founders { display: flex; gap: 20px; margin-top: 32px; }
+  #s1 .founder { display: flex; align-items: center; gap: 10px; }
+  #s1 .founder img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); }
+  #s1 .founder-name { font-size: 0.9rem; font-weight: 600; }
+  #s1 .founder-role { font-size: 0.72rem; color: rgba(255,255,255,0.5); }
+  #s1 .date-tag { margin-top: 36px; font-size: 0.78rem; color: rgba(255,255,255,0.35); font-weight: 500; }
+  #s1 .glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+  #s1 .glow-1 { width: 350px; height: 350px; background: rgba(139,92,246,0.3); top: -80px; left: 200px; }
+
+  /* ── SLIDE 2: THE PRODUCT ── */
+  #s2 { padding: 44px 0 44px 56px; gap: 0; }
+  #s2 .left { flex: 1; flex-direction: column; justify-content: center; gap: 16px; padding-right: 36px; }
+  #s2 .right { flex: 1; display: flex; flex-direction: column; align-items: stretch; overflow: hidden; padding: 16px 0; }
+  #s2 .product-imgs { display: flex; flex-direction: column; gap: 12px; align-items: center; height: 100%; padding: 0; }
+  #s2 .product-imgs img.main { flex: 1.5; min-height: 0; max-width: 100%; object-fit: contain; object-position: right center; filter: drop-shadow(0 8px 32px rgba(107,33,168,0.3)); }
+  #s2 .product-imgs img.link { flex: 1; min-height: 0; max-width: 100%; object-fit: contain; object-position: right center; filter: drop-shadow(0 4px 16px rgba(107,33,168,0.2)); }
+  #s2 .feature-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  #s2 .pill { display: flex; align-items: center; gap: 5px; background: var(--lavender); border-radius: 999px; padding: 5px 13px; font-size: 0.8rem; font-weight: 600; color: var(--purple); }
+
+  /* ── SLIDE 3: WHERE WE STARTED ── */
+  #s3 { flex-direction: row; }
+  #s3 .s3-left { flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 36px 24px 44px 56px; justify-content: center; overflow: hidden; }
+  #s3 .s3-right { flex: 1.1; padding: 28px 56px 28px 12px; display: flex; align-items: center; justify-content: center; }
+  #s3 .collage { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; width: 100%; height: 100%; max-height: 460px; }
+  #s3 .collage img { border-radius: 10px; object-fit: cover; width: 100%; height: 100%; min-height: 0; }
+  #s3 .collage .span2 { grid-column: span 2; }
+  #s3 .collage .tall { grid-row: span 2; }
+
+  /* ── SLIDE 4: NUMBERS ── */
+  #s4 { flex-direction: column; padding: 44px 60px 52px; gap: 20px; }
+  #s4 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; flex: 1; }
+  #s4 .highlights { display: flex; gap: 14px; flex-shrink: 0; }
+  #s4 .hl-card { flex: 1; background: var(--purple); color: white; border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; }
+  #s4 .hl-card .icon { font-size: 1.8rem; flex-shrink: 0; }
+  #s4 .hl-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
+  #s4 .hl-card p { font-size: 0.75rem; opacity: 0.75; }
+  #s4 .hl-card.light { background: var(--lavender); }
+  #s4 .hl-card.light h3 { color: var(--purple); }
+  #s4 .hl-card.light p { color: var(--text-light); opacity: 1; }
+
+  /* ── SLIDE 5: PRODUCT ── */
+  #s5 { padding: 44px 60px; gap: 24px; }
+  #s5 .left { flex: 1; flex-direction: column; gap: 18px; justify-content: center; }
+  #s5 .right { flex: 1; flex-direction: column; gap: 14px; justify-content: center; }
+  #s5 .ach-row { display: flex; gap: 12px; }
+  #s5 .ach-card { flex: 1; background: var(--lavender); border-radius: 12px; padding: 14px 16px; }
+  #s5 .ach-card .icon { font-size: 1.3rem; margin-bottom: 6px; }
+  #s5 .ach-card h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 4px; color: var(--purple); }
+  #s5 .ach-card p { font-size: 0.76rem; color: var(--text-light); line-height: 1.4; }
+
+  /* ── SLIDE 6: TRACTION ── */
+  #s6 { flex-direction: column; padding: 44px 60px 52px; gap: 18px; }
+  #s6 .traction-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; flex: 1; }
+  #s6 .tc { background: var(--lavender); border-radius: 14px; padding: 18px 18px; display: flex; flex-direction: column; gap: 8px; }
+  #s6 .tc .t-icon { font-size: 1.4rem; }
+  #s6 .tc h3 { font-size: 0.9rem; font-weight: 700; color: var(--purple); }
+  #s6 .tc .big-num { font-size: 1.8rem; font-weight: 900; color: var(--text); line-height: 1; }
+  #s6 .tc p { font-size: 0.79rem; color: var(--text-light); line-height: 1.45; }
+  #s6 .tc.dark { background: var(--purple); color: white; }
+  #s6 .tc.dark h3 { color: #C084FC; }
+  #s6 .tc.dark .big-num { color: white; }
+  #s6 .tc.dark p { color: rgba(255,255,255,0.7); }
+  /* WhatsApp bubble */
+  #s6 .wa-strip { background: white; border: 2px solid var(--lavender-mid); border-radius: 14px; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; }
+  #s6 .wa-header { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 700; color: #25D366; }
+  #s6 .wa-header::before { content: ''; display: block; width: 18px; height: 18px; background: #25D366; border-radius: 50%; flex-shrink: 0; }
+  #s6 .wa-bubble { background: #DCF8C6; border-radius: 0 10px 10px 10px; padding: 8px 12px; font-size: 0.78rem; color: #111; line-height: 1.4; width: fit-content; max-width: 90%; }
+  #s6 .wa-bubble.sent { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px 0 10px 10px; align-self: flex-end; }
+
+  /* ── SLIDE 7: INVESTOR BUBBLES ── */
+  #s7 { padding: 44px 60px; gap: 32px; }
+  #s7 .left { flex: 1; flex-direction: column; gap: 18px; justify-content: center; }
+  #s7 .right { flex: 1.1; flex-direction: column; gap: 16px; justify-content: center; }
+  .vc-bubbles { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .vc-bubble { border-radius: 999px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; text-align: center; line-height: 1.2; flex-shrink: 0; }
+  .vc-bubble.lg { background: var(--purple); font-size: 0.82rem; padding: 12px 20px; }
+  .vc-bubble.md { background: var(--purple-mid); font-size: 0.76rem; padding: 9px 16px; }
+  .vc-bubble.sm { background: var(--purple-light); font-size: 0.7rem; padding: 7px 13px; }
+  .vc-bubble.xs { background: var(--lavender-mid); color: var(--purple); font-size: 0.68rem; padding: 6px 11px; }
+  #s7 .learning-box { background: var(--purple); color: white; border-radius: 14px; padding: 18px 20px; }
+  #s7 .learning-box h3 { font-size: 0.95rem; font-weight: 700; color: #C084FC; margin-bottom: 10px; }
+
+  /* ── SLIDE 8: CHALLENGES ── */
+  #s8 { padding: 44px 60px; gap: 24px; }
+  #s8 .left { flex: 1; flex-direction: column; gap: 14px; justify-content: center; }
+  #s8 .right { flex: 1; flex-direction: column; gap: 14px; justify-content: center; }
+  #s8 .ch { background: #fff5f5; border: 2px solid #fecaca; border-radius: 12px; padding: 16px 18px; }
+  #s8 .ch h3 { font-size: 0.88rem; font-weight: 700; color: #dc2626; margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
+  #s8 .ch p { font-size: 0.82rem; color: #7f1d1d; line-height: 1.5; }
+  #s8 .status-card { background: var(--lavender); border-radius: 12px; padding: 16px 18px; }
+  #s8 .bar-wrap { background: #ddd; border-radius: 999px; height: 7px; margin-top: 6px; overflow: hidden; }
+  #s8 .bar { height: 100%; border-radius: 999px; background: var(--purple-mid); }
+
+  /* ── SLIDE 9: PIVOT ── */
+  #s9 { flex-direction: column; padding: 32px 56px 28px; gap: 14px; }
+  #s9 .pivot-row { gap: 14px; display: flex; align-items: stretch; flex-shrink: 0; }
+  #s9 .pivot-old { flex: 1; border-radius: 12px; padding: 16px 18px; background: #f9fafb; border: 2px solid #e5e7eb; display: flex; flex-direction: column; gap: 8px; opacity: 0.7; }
+  #s9 .pivot-old h3 { font-size: 0.9rem; font-weight: 800; color: #6b7280; }
+  #s9 .pivot-old ul.cross li { font-size: 0.8rem; color: #6b7280; }
+  #s9 .pivot-arrow { display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--purple); flex-shrink: 0; }
+  #s9 .pivot-new { flex: 1.5; border-radius: 12px; padding: 16px 18px; background: var(--purple); color: white; display: flex; flex-direction: column; gap: 8px; }
+  #s9 .pivot-new h3 { font-size: 1rem; font-weight: 800; }
+  #s9 .pivot-new p { font-size: 0.82rem; color: rgba(255,255,255,0.75); }
+  #s9 .pivot-new ul.styled li { color: rgba(255,255,255,0.9); font-size: 0.82rem; }
+  #s9 .pivot-new ul.styled li::before { color: var(--lavender); }
+  /* Modern timeline */
+  .ks-timeline { display: flex; flex: 1; gap: 0; border-radius: 16px; overflow: hidden; position: relative; }
+  .ks-timeline::before { content: ''; position: absolute; top: 32px; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--purple-light), var(--purple)); z-index: 1; }
+  .ks-tl { flex: 1; padding: 20px 20px 22px; border-right: 1px solid rgba(107,33,168,0.12); position: relative; display: flex; flex-direction: column; gap: 10px; }
+  .ks-tl:last-child { border-right: none; }
+  .ks-tl:nth-child(1) { background: #f5f0ff; }
+  .ks-tl:nth-child(2) { background: #ede9fe; }
+  .ks-tl:nth-child(3) { background: #ddd6fe; }
+  .ks-tl:nth-child(4) { background: #c4b5fd; }
+  .ks-tl .ks-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--purple); border: 3px solid white; box-shadow: 0 0 0 2px var(--purple); flex-shrink: 0; position: relative; z-index: 2; margin-bottom: 4px; }
+  .ks-tl:nth-child(3) .ks-dot, .ks-tl:nth-child(4) .ks-dot { background: var(--purple-mid); box-shadow: 0 0 0 2px var(--purple-mid); }
+  .ks-tl .ks-month { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--purple); }
+  .ks-tl .ks-text { font-size: 0.82rem; color: var(--text); line-height: 1.55; font-weight: 400; }
+
+  /* ── SLIDE 10: NEXT 6 MONTHS ── */
+  #s10 { flex-direction: column; padding: 44px 60px 52px; gap: 18px; }
+  #s10 .plan-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; flex: 1; }
+  #s10 .plan-card { background: white; border: 2px solid var(--lavender-mid); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+  #s10 .plan-card .p-header { display: flex; align-items: center; gap: 10px; }
+  #s10 .plan-card .p-icon { font-size: 1.4rem; }
+  #s10 .plan-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--purple); }
+  #s10 .plan-card .timeframe { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-light); background: var(--lavender); padding: 2px 7px; border-radius: 999px; }
+  #s10 .funding-bar { background: var(--purple); color: white; border-radius: 12px; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-shrink: 0; }
+  #s10 .funding-bar .fb-label { font-size: 0.8rem; opacity: 0.7; }
+  #s10 .funding-bar .fb-amount { font-size: 1.6rem; font-weight: 900; }
+  #s10 .funding-bar .fb-note { font-size: 0.77rem; opacity: 0.7; max-width: 260px; text-align: right; }
+
+  /* ── SLIDE 11: HELP ── */
+  #s11 { flex-direction: column; padding: 44px 60px 52px; gap: 18px; }
+  #s11 .help-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; flex: 1; }
+  #s11 .help-card { background: var(--lavender); border-radius: 14px; padding: 22px 22px; display: flex; flex-direction: column; gap: 8px; }
+  #s11 .help-card .h-icon { font-size: 1.8rem; margin-bottom: 2px; }
+  #s11 .help-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--purple); }
+  #s11 .help-card p { font-size: 0.83rem; color: var(--text-light); line-height: 1.5; }
+  #s11 .help-card .ask { display: inline-block; background: var(--purple); color: white; font-size: 0.75rem; font-weight: 600; padding: 4px 11px; border-radius: 999px; margin-top: 4px; width: fit-content; }
+
+  /* ── SLIDE 12: CLOSING ── */
+  #s12 { background: linear-gradient(135deg, #1a0533 0%, #3b0764 60%, #1a0533 100%); color: white; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; padding: 60px; }
+  #s12 .founders-photo { width: 300px; height: 300px; border-radius: 24px; object-fit: cover; border: 4px solid rgba(168,85,247,0.5); box-shadow: 0 0 80px rgba(168,85,247,0.35); }
+  #s12 .thank-you { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; }
+  #s12 .journey-line { font-size: clamp(0.9rem, 1.6vw, 1.15rem); color: rgba(255,255,255,0.6); max-width: 720px; line-height: 1.7; }
+  #s12 .emails { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  #s12 .email-tag { font-size: 0.88rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ══ SLIDE 1: TITLE ══ -->
+<div class="slide row active" id="s1">
+  <div class="glow glow-1"></div>
+  <div class="left">
+    <div class="batch-tag">🐦 Tehnopol Batch 12 · 6-Month Interim Evaluation</div>
+    <h1 style="color:white;">Truly Intelligent.<br><span style="color:#C084FC;">Completely Offline.</span></h1>
+    <p style="color:rgba(255,255,255,0.55);font-size:1rem;margin-top:8px;line-height:1.6;">Europe's first fully offline, intelligent baby monitor</p>
+    <div class="founders">
+      <div class="founder">
+        <img src="images/max-headshot.jpg" alt="Max">
+        <div>
+          <div class="founder-name">Max Simmonds</div>
+          <div class="founder-role">CEO &amp; CTO · Founder</div>
+        </div>
+      </div>
+      <div class="founder">
+        <img src="images/maija-headshot.jpg" alt="Maija">
+        <div>
+          <div class="founder-name">Maija Simmonds</div>
+          <div class="founder-role">CPO &amp; Founder</div>
+        </div>
+      </div>
+    </div>
+    <div class="date-tag">March 30, 2026 · Tehnopol, Tallinn</div>
+  </div>
+  <div class="right">
+    <img class="hero" src="images/front.png" alt="Purple Parrot">
+  </div>
+  <img src="images/logo.png" class="slide-logo" style="filter:brightness(0) invert(1) opacity(0.4);" alt="logo">
+</div>
+
+<!-- ══ SLIDE 2: THE PRODUCT ══ -->
+<div class="slide row" id="s2">
+  <div class="left col">
+    <div class="tag">The Product</div>
+    <h2 class="section"><span class="highlight">Privacy</span> and <span class="highlight">safety</span>.<br>No longer a choice.</h2>
+    <p class="lead" style="margin-top:4px;">Parents shouldn't choose between a smart monitor that streams their baby's data to the cloud, and a dumb one that's private. Purple Parrot runs advanced AI <strong>entirely on-device</strong> — no internet, no cloud, no data ever leaves home.</p>
+    <div class="feature-pills" style="margin-top:14px;">
+      <div class="pill">🧠 On-device NPU</div>
+      <div class="pill">📡 100% Offline</div>
+      <div class="pill">🫁 Breathing Detection</div>
+      <div class="pill">🔄 Roll-over Alert</div>
+      <div class="pill">❤️ Remote Heart Rate</div>
+      <div class="pill">🌙 HD Night Vision</div>
+      <div class="pill">🧲 Portable — pram · car · cot</div>
+      <div class="pill">🔋 Inductive Charging</div>
+    </div>
+  </div>
+  <div class="right col" style="padding:0 0 0 32px;">
+    <div class="product-imgs">
+      <img class="main" src="images/front.png" alt="Purple Parrot Camera">
+      <img class="link" src="images/link.png" alt="Purple Parrot Handset">
+    </div>
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">2 / 12</span>
+</div>
+
+<!-- ══ SLIDE 3: WHERE WE STARTED ══ -->
+<div class="slide row" id="s3">
+  <div class="s3-left">
+    <div class="tag">Our Journey</div>
+    <h2 class="section">October 2025: <span class="highlight">A Raspberry Pi and a Dream</span></h2>
+    <div>
+      <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9ca3af;margin-bottom:6px;">Then — Oct 2025</div>
+      <div style="background:#f9fafb;border:2px dashed #e5e7eb;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;opacity:0.85;">
+        <ul class="cross">
+          <li>Raspberry Pi 4 with Temu pan-and-tilt mount</li>
+          <li>No business plan or market validation</li>
+          <li>No fundraising experience</li>
+          <li>No product design or 3D model</li>
+          <li>Algorithms working only on dev hardware</li>
+        </ul>
+        <p style="font-size:0.78rem;color:#6b7280;font-style:italic;margin-top:4px;">"We had the engineering instincts — but almost nothing else."</p>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:6px;">Now — March 2026</div>
+      <div style="background:var(--lavender);border-radius:10px;padding:14px;">
+        <ul class="check">
+          <li>Fully 3D-modelled &amp; printed product — design frozen</li>
+          <li>Novel magnetic pan-and-tilt with ball removal &amp; inductive charging</li>
+          <li>Custom firmware on LiChee Nano RV (with NPU)</li>
+          <li>Video streaming ported; face detection ~90% complete</li>
+          <li>Website live · 25 sign-ups · Facebook campaign validated</li>
+          <li>Accepted into OnShape Startup Programme</li>
+          <li>CE/UKCA certification path started with REVISMO</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="s3-right">
+    <div class="collage">
+      <img class="tall" src="images/rpi.jpeg" alt="Original Raspberry Pi setup">
+      <img src="images/proto-1.png" alt="Prototype v1">
+      <img src="images/proto-2.png" alt="Prototype v2">
+      <img class="span2" src="images/proto-4.jpg" alt="Latest prototype">
+      <img src="images/front.png" alt="Final product render" style="object-fit:contain;background:#f3f0ff;padding:6px;">
+    </div>
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">3 / 12</span>
+</div>
+
+<!-- ══ SLIDE 4: 6 MONTHS IN NUMBERS ══ -->
+<div class="slide col" id="s4">
+  <div style="flex-shrink:0;">
+    <div class="tag">Activity</div>
+    <h2 class="section">6 Months in <span class="highlight">Numbers</span></h2>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-block"><div class="num">27+</div><div class="label">Face-to-Face<br>Investor Talks</div></div>
+    <div class="stat-block"><div class="num">50+</div><div class="label">Investor<br>Emails Sent</div></div>
+    <div class="stat-block"><div class="num">15</div><div class="label">Workshops &amp;<br>Training Sessions</div></div>
+    <div class="stat-block"><div class="num">3</div><div class="label">Podcast &amp;<br>Media Appearances</div></div>
+    <div class="stat-block"><div class="num">19</div><div class="label">Mentor &amp; Team<br>Catch-ups</div></div>
+    <div class="stat-block"><div class="num">7</div><div class="label">Weekly R&amp;D<br>Sessions</div></div>
+    <div class="stat-block" style="background:var(--purple);color:white;"><div class="num" style="color:#C084FC;font-size:2rem;">🏆</div><div class="label" style="color:rgba(255,255,255,0.8);">Won sTARTUp Day<br>Speaker Contest</div></div>
+    <div class="stat-block"><div class="num">2</div><div class="label">Incubator<br>Evaluations Passed</div></div>
+  </div>
+  <div class="highlights">
+    <div class="hl-card"><div class="icon">🎤</div><div><h3>Main Stage — sTARTUp Day 2026</h3><p>Presented to ~2,000 attendees in Tartu</p></div></div>
+    <div class="hl-card"><div class="icon">🏭</div><div><h3>Pitched at Tehnopol Demo Day</h3><p>Pitching Stage, Jan 29 at sTARTUp Day</p></div></div>
+    <div class="hl-card light"><div class="icon">📰</div><div><h3 style="color:var(--purple);">2 Podcasts + Press</h3><p style="color:var(--text-light);">CHIIPs podcast, VENTURES Live, Electronics Weekly</p></div></div>
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">4 / 12</span>
+</div>
+
+<!-- ══ SLIDE 5: PRODUCT ACHIEVEMENTS ══ -->
+<div class="slide row" id="s5">
+  <div class="left col" style="padding:44px 0 44px 60px;">
+    <div class="tag">Product</div>
+    <h2 class="section">From <span class="highlight">Temu mount</span> to<br>novel <span class="highlight">patentable</span> mechanism</h2>
+    <p class="body" style="margin-top:8px;">Six months of focused engineering turned a rough concept into a designed, manufacturable product.</p>
+    <div class="ach-row" style="margin-top:14px;">
+      <div class="ach-card"><div class="icon">🧲</div><h4>Magnetic MagLock System</h4><p>Ball camera lifts out and maglocks into car, pram, or cot holders. Novel coupling — likely patentable.</p></div>
+      <div class="ach-card"><div class="icon">⚡</div><h4>Inductive Charging</h4><p>Custom wireless charging integrated into base mount. No cables when docking.</p></div>
+    </div>
+    <div class="ach-row" style="margin-top:12px;">
+      <div class="ach-card"><div class="icon">🧠</div><h4>LiChee Nano + NPU</h4><p>RISC-V SoC with neural processing unit. Video streaming ported, face detection in progress.</p></div>
+      <div class="ach-card"><div class="icon">📐</div><h4>OnShape Startup Programme</h4><p>Accepted — unlimited access to professional 3D CAD and expert manufacturing advice.</p></div>
+    </div>
+  </div>
+  <div class="right col" style="padding:44px 60px 44px 24px;gap:10px;justify-content:center;">
+    <img src="images/product-photo-a.jpg" alt="Product view A" style="flex:1;min-height:0;border-radius:12px;object-fit:cover;width:100%;filter:drop-shadow(0 4px 16px rgba(107,33,168,0.2));">
+    <img src="images/product-photo-b.jpg" alt="Product view B" style="flex:1;min-height:0;border-radius:12px;object-fit:cover;width:100%;filter:drop-shadow(0 4px 16px rgba(107,33,168,0.2));">
+    <img src="images/product-photo-c.jpg" alt="Product view C" style="flex:1;min-height:0;border-radius:12px;object-fit:cover;width:100%;filter:drop-shadow(0 4px 16px rgba(107,33,168,0.2));">
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">5 / 12</span>
+</div>
+
+<!-- ══ SLIDE 6: MARKET TRACTION ══ -->
+<div class="slide col" id="s6">
+  <div style="flex-shrink:0;">
+    <div class="tag">Market Validation</div>
+    <h2 class="section">Real demand. <span class="highlight">Bootstrapped validation.</span></h2>
+  </div>
+  <div class="traction-grid">
+    <div class="tc">
+      <div class="t-icon">📣</div>
+      <h3>Facebook Campaign</h3>
+      <div class="big-num">7,759</div>
+      <p>Reach in 12 days · <strong>365 landings</strong> · €58.34 spent · 87% women 25–44</p>
+    </div>
+    <div class="tc">
+      <div class="t-icon">💬</div>
+      <h3>Reddit Validation</h3>
+      <div class="big-num">2.3K</div>
+      <p>Views · <strong>83% upvote ratio</strong> · #27 Top Post · "privacy is too important" — organic confirmation</p>
+    </div>
+    <div class="tc">
+      <div class="t-icon">🌐</div>
+      <h3>Waitlist Sign-ups</h3>
+      <div class="big-num">25+</div>
+      <p>At £300 RRP (early bird £200) · Growing organically</p>
+      <!-- WhatsApp bubbles -->
+      <div class="wa-strip" style="margin-top:6px;">
+        <div class="wa-header">WhatsApp — inbound buyer interest</div>
+        <div class="wa-bubble">"when is it available? I want one!"</div>
+        <div class="wa-bubble">"where can I get this?"</div>
+        <div class="wa-bubble sent">We're launching soon — join waitlist at ncode.london</div>
+      </div>
+    </div>
+    <div class="tc">
+      <div class="t-icon">🇬🇧</div>
+      <h3>UK Market</h3>
+      <div class="big-num">£100M</div>
+      <p>UK smart monitor market · UK Embassy introductions · UKRI / Innovate UK discussions ongoing</p>
+    </div>
+    <div class="tc">
+      <div class="t-icon">🎙</div>
+      <h3>Press &amp; Media</h3>
+      <div class="big-num">3+</div>
+      <p>Appearances · CHIIPs podcast · VENTURES Live · <strong>Electronics Weekly</strong> article + more</p>
+    </div>
+    <div class="tc dark">
+      <div class="t-icon">⭐</div>
+      <h3>sTARTUp Day 2026</h3>
+      <div class="big-num">Main Stage</div>
+      <p>"Stranger in the Home" · Won Speaker Contest · ~2,000 attendees · Tartu</p>
+    </div>
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">6 / 12</span>
+</div>
+
+<!-- ══ SLIDE 7: INVESTOR JOURNEY ══ -->
+<div class="slide row" id="s7">
+  <div class="left col" style="padding:44px 24px 44px 60px;">
+    <div class="tag">Investor Engagement</div>
+    <h2 class="section"><span class="highlight">27+ face-to-face</span><br>investor meetings.</h2>
+    <p class="lead" style="margin-top:10px;">Six months of active fundraising — calendar meetings, VC matchmaking at sTARTUp Day, and direct outreach.</p>
+    <div class="vc-bubbles" style="margin-top:18px;">
+      <div class="vc-bubble lg">Karma Ventures</div>
+      <div class="vc-bubble lg">Superangel</div>
+      <div class="vc-bubble md">Archangel</div>
+      <div class="vc-bubble md">FirstPick.vc</div>
+      <div class="vc-bubble md">BSV Ventures</div>
+      <div class="vc-bubble md">Creator Fund</div>
+      <div class="vc-bubble sm">PurposeTech</div>
+      <div class="vc-bubble sm">Latvian Business Angels</div>
+      <div class="vc-bubble sm">Prototype Capital</div>
+      <div class="vc-bubble sm">CDL-Estonia</div>
+      <div class="vc-bubble sm">Impulsa Pynes</div>
+      <div class="vc-bubble xs">FSE Group</div>
+      <div class="vc-bubble xs">VenturesPn</div>
+      <div class="vc-bubble xs">SPARKUP</div>
+      <div class="vc-bubble xs">+ more</div>
+    </div>
+  </div>
+  <div class="right col" style="padding:44px 60px 44px 24px;gap:16px;justify-content:center;">
+    <div class="learning-box">
+      <h3>What we learned</h3>
+      <ul class="styled" style="gap:9px;">
+        <li style="color:rgba(255,255,255,0.9);">Smart baby monitor market ($1.8B) is below typical VC threshold — they want $10B+ TAMs</li>
+        <li style="color:rgba(255,255,255,0.9);">We struggled to articulate the broader edge-AI platform vision clearly enough</li>
+        <li style="color:rgba(255,255,255,0.9);">Pre-revenue hardware is a very hard VC sell without a working chip-level prototype</li>
+        <li style="color:rgba(255,255,255,0.9);">Consumer validation (Kickstarter traction) matters more than investor pitches at this stage</li>
+      </ul>
+    </div>
+    <div style="background:var(--lavender);border-radius:12px;padding:16px 18px;">
+      <h3 style="font-size:0.9rem;font-weight:700;color:var(--purple);margin-bottom:8px;">Our conclusion</h3>
+      <p class="body">We've paused active VC fundraising. Focusing on <strong>product + Kickstarter</strong> to build the proof that makes future funding easier — and on our terms.</p>
+    </div>
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">7 / 12</span>
+</div>
+
+<!-- ══ SLIDE 8: CHALLENGES ══ -->
+<div class="slide row" id="s8">
+  <div class="left col" style="padding:44px 24px 44px 60px;">
+    <div class="tag">Challenges</div>
+    <h2 class="section">What <span class="highlight">didn't</span> go<br>to plan</h2>
+    <p class="lead" style="margin-top:10px;">Being honest about the blockers.</p>
+    <div class="ch" style="margin-top:16px;">
+      <h3>⏱ Firmware Port: Slower Than Expected</h3>
+      <p>Porting from Raspberry Pi to LiChee Nano (RISC-V + NPU) is taking longer than planned. Video streaming done. Face detection ~90%. Breathing rate and roll-over still pending — and these are the Kickstarter gate.</p>
+    </div>
+    <div class="ch" style="margin-top:10px;">
+      <h3>💰 VC Fundraising: 0 Term Sheets</h3>
+      <p>27+ investor meetings over 6 months produced no offers. Market size perception and early hardware stage were the main blockers. Significant time investment that we're now redirecting.</p>
+    </div>
+  </div>
+  <div class="right col" style="padding:44px 60px 44px 24px;gap:14px;justify-content:center;">
+    <div class="ch">
+      <h3>👥 Two Founders, One Full-Time Job</h3>
+      <p>As a 2-person team, we're already stretched covering hardware, firmware, AI, product design, business development, and fundraising. The biggest constraint: <strong>Max has a full-time job</strong>, meaning most development happens in evenings and weekends. We simply can't move as fast as we'd like. More funding = more dedicated time = faster progress.</p>
+    </div>
+    <div class="status-card">
+      <h3 style="font-size:0.88rem;font-weight:700;color:var(--purple);margin-bottom:10px;">Firmware status</h3>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:3px;"><span>Video streaming</span><strong style="color:var(--green)">✓ Done</strong></div>
+          <div class="bar-wrap"><div class="bar" style="width:100%;background:var(--green)"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:3px;"><span>Face detection</span><strong style="color:var(--purple)">~90%</strong></div>
+          <div class="bar-wrap"><div class="bar" style="width:90%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:3px;"><span>Breathing rate detection</span><strong style="color:#f59e0b">In progress</strong></div>
+          <div class="bar-wrap"><div class="bar" style="width:35%;background:#f59e0b"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:3px;"><span>Roll-over detection</span><strong style="color:#f59e0b">Pending</strong></div>
+          <div class="bar-wrap"><div class="bar" style="width:20%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">8 / 12</span>
+</div>
+
+<!-- ══ SLIDE 9: PIVOT ══ -->
+<div class="slide col" id="s9">
+  <div style="flex-shrink:0;">
+    <div class="tag">Strategy</div>
+    <h2 class="section">The Pivot: <span class="highlight">VC → Kickstarter</span></h2>
+  </div>
+  <div class="pivot-row">
+    <div class="pivot-old">
+      <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9ca3af;margin-bottom:4px;">Previous approach</div>
+      <h3 style="font-size:1rem;font-weight:800;color:#6b7280;">Chase VC / Angel</h3>
+      <ul class="cross" style="margin-top:8px;">
+        <li style="color:#6b7280;">27 meetings, 0 term sheets</li>
+        <li style="color:#6b7280;">Market size perceived as too small</li>
+        <li style="color:#6b7280;">Pre-revenue hardware is a tough sell</li>
+        <li style="color:#6b7280;">Distracted from product</li>
+      </ul>
+    </div>
+    <div class="pivot-arrow">→</div>
+    <div class="pivot-new">
+      <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.5);margin-bottom:4px;">New approach</div>
+      <h3>Kickstarter First</h3>
+      <p style="font-size:0.85rem;color:rgba(255,255,255,0.75);margin-bottom:6px;">Build it. Prove demand with real customers. Then approach investors from a position of strength — revenue, traction, and proof it works.</p>
+      <ul class="styled">
+        <li>Kickstarter draft already started</li>
+        <li>25 sign-ups at £300 with only €58 ad spend</li>
+        <li>87% of interest from women 25–44 — ideal demographic</li>
+        <li>Gate is algorithm validation on Lichee Nano</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ks-timeline">
+    <div class="ks-tl"><div class="ks-dot"></div><div class="ks-month">Now → Month 3</div><div class="ks-text">Algorithm validation on Lichee Nano · rPPG ≤ 3bpm · Roll-over logic · First demo unit</div></div>
+    <div class="ks-tl"><div class="ks-dot"></div><div class="ks-month">Month 3 → 6</div><div class="ks-text">Kickstarter prep · Product video · PCBs + IR LED · Waitlist ≥ 500</div></div>
+    <div class="ks-tl"><div class="ks-dot"></div><div class="ks-month">Month 6 → 12</div><div class="ks-text">Launch Kickstarter · Beta hardware 10–20 units · CE pre-assessment</div></div>
+    <div class="ks-tl"><div class="ks-dot"></div><div class="ks-month">Month 12 → 18</div><div class="ks-text">2,000+ sign-ups · DFM locked · Seed deck ready if desired</div></div>
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">9 / 12</span>
+</div>
+
+<!-- ══ SLIDE 10: NEXT 6 MONTHS ══ -->
+<div class="slide col" id="s10">
+  <div style="flex-shrink:0;">
+    <div class="tag">Plan</div>
+    <h2 class="section">Next 6 Months: <span class="highlight">Prototype to Launch</span></h2>
+  </div>
+  <div class="plan-grid">
+    <div class="plan-card">
+      <div class="p-header"><div class="p-icon">🧠</div><div><div class="timeframe">Months 1–3</div><h3>Algorithm Validation</h3></div></div>
+      <ul class="styled">
+        <li>Port breathing rate (rPPG) to Lichee Nano — target ≤ 3 bpm error</li>
+        <li>Roll-over &amp; posture logic validated on device</li>
+        <li>IR LED ring sorted and tested in darkness</li>
+        <li>Motor controller ported from Arduino to Lichee Nano</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="p-header"><div class="p-icon">📦</div><div><div class="timeframe">Months 3–6</div><h3>Kickstarter Ready</h3></div></div>
+      <ul class="styled">
+        <li>PCBs laid out — move off dev boards</li>
+        <li>Handset development (touch UI + encrypted P2P link)</li>
+        <li>Kickstarter campaign page + product video</li>
+        <li>Waitlist target: 500+ sign-ups</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="p-header"><div class="p-icon">⚖️</div><div><div class="timeframe">Ongoing</div><h3>IP &amp; Regulatory</h3></div></div>
+      <ul class="styled">
+        <li>Patent the magnetic coupling + pan-tilt mechanism</li>
+        <li>CE pre-assessment &amp; RED compliance with REVISMO</li>
+        <li>Technical file &amp; documentation structure</li>
+        <li>FTO review</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="p-header"><div class="p-icon">💼</div><div><div class="timeframe">Ongoing</div><h3>Market &amp; Funding</h3></div></div>
+      <ul class="styled">
+        <li>UKRI / Innovate UK grant applications</li>
+        <li>UK market entry via Embassy introductions</li>
+        <li>Kickstarter campaign partner (Enventys etc.)</li>
+        <li>Explore EIC Accelerator for future round</li>
+      </ul>
+    </div>
+  </div>
+  <div class="funding-bar">
+    <div><div class="fb-label">Funding Plan</div><div class="fb-amount">Bootstrapped + Grants</div></div>
+    <div style="color:rgba(255,255,255,0.4);font-size:1.4rem;">→</div>
+    <div class="fb-note">Kickstarter as primary near-term revenue. Actively pursuing UKRI/Innovate UK grants. Pre-seed possible post-Kickstarter traction (Month 12–18).</div>
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">10 / 12</span>
+</div>
+
+<!-- ══ SLIDE 11: WHERE WE NEED HELP ══ -->
+<div class="slide col" id="s11">
+  <div style="flex-shrink:0;">
+    <div class="tag">Mentor Support</div>
+    <h2 class="section">Where we need the most <span class="highlight">help</span></h2>
+  </div>
+  <div class="help-grid">
+    <div class="help-card">
+      <div class="h-icon">⚖️</div>
+      <h3>Intellectual Property &amp; Patents</h3>
+      <p>Our magnetic pan-and-tilt coupling is likely patentable — it's novel and central to our portability USP. We don't yet know how to navigate IP filing without significant legal spend.</p>
+      <span class="ask">IP attorneys / patent strategy introductions</span>
+    </div>
+    <div class="help-card">
+      <div class="h-icon">🇬🇧</div>
+      <h3>UK Market Entry</h3>
+      <p>Warm contacts via the UK Embassy in Tallinn and UKRI discussions are underway. We need help navigating UK retail introductions (John Lewis, Boots) and UK investor warm intros.</p>
+      <span class="ask">UK retail or investor network connections</span>
+    </div>
+    <div class="help-card">
+      <div class="h-icon">🚀</div>
+      <h3>Kickstarter Strategy</h3>
+      <p>We're committed to Kickstarter as our go-to-market path. We need guidance on campaign structure, pricing, fulfilment, and introductions to experienced campaign partners.</p>
+      <span class="ask">Kickstarter expertise or partner introductions</span>
+    </div>
+    <div class="help-card">
+      <div class="h-icon">💰</div>
+      <h3>Angels &amp; Aligned Investors</h3>
+      <p>We're not looking for typical VC — we need introductions to angels or high-net-worth individuals who care about privacy, safety, or deep tech hardware. Funding frees Max from his day job and accelerates development significantly.</p>
+      <span class="ask">Introductions to aligned angels / HNW individuals</span>
+    </div>
+  </div>
+  <img src="images/logo.png" class="slide-logo" alt="logo">
+  <span class="slide-num">11 / 12</span>
+</div>
+
+<!-- ══ SLIDE 12: CLOSING ══ -->
+<div class="slide col" id="s12">
+  <img src="images/founders.jpg" class="founders-photo" alt="Max and Maija">
+  <h2 class="thank-you">Thank you.</h2>
+  <p class="journey-line">Six months ago we had a Raspberry Pi and a Temu mount.<br>Today we have a designed product, validated market demand, 27+ investor conversations,<br>a main stage sTARTUp Day talk, and a clear path forward.</p>
+  <p class="journey-line" style="color:rgba(255,255,255,0.4);font-size:0.85rem;">Protecting our children's future — without invading it.</p>
+  <div class="emails">
+    <span class="email-tag">max@ncode.london</span>
+    <span class="email-tag">·</span>
+    <span class="email-tag">maija@ncode.london</span>
+    <span class="email-tag">·</span>
+    <span class="email-tag">ncode.london</span>
+  </div>
+</div>
+
+</div>
+
+<!-- Nav -->
+<div id="nav">
+  <button onclick="go(-1)">‹</button>
+  <div id="progress-dots"></div>
+  <button onclick="go(1)">›</button>
+  <span id="slide-counter" style="min-width:36px;text-align:center;"></span>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  const dotsContainer = document.getElementById('progress-dots');
+  const counter = document.getElementById('slide-counter');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsContainer.appendChild(d);
+  });
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, total - 1));
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + total;
+  }
+  function go(dir) { goTo(current + dir); }
+  counter.textContent = '1 / ' + total;
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(-1); }
+    if (e.key === 'f' || e.key === 'F') { document.documentElement.requestFullscreen?.(); }
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => { const dx = tx - e.changedTouches[0].clientX; if (Math.abs(dx) > 40) go(dx > 0 ? 1 : -1); });
+</script>
+</body>
+</html>
