@@ -85,19 +85,22 @@
   #s3 { flex-direction: row; }
   #s3 .s3-left { flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 36px 24px 44px 56px; justify-content: center; overflow: hidden; }
   #s3 .s3-right { flex: 1.1; padding: 28px 56px 28px 12px; display: flex; align-items: center; justify-content: center; }
-  #s3 .collage { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; width: 100%; height: 100%; max-height: 460px; }
+  #s3 .collage { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 0.6fr 1.6fr 0.6fr; gap: 8px; width: 100%; height: 100%; max-height: 480px; }
   #s3 .collage img { border-radius: 10px; object-fit: cover; width: 100%; height: 100%; min-height: 0; }
-  #s3 .collage .span2 { grid-column: span 2; }
-  #s3 .collage .tall { grid-row: span 2; }
+  #s3 .collage .span3 { grid-column: span 3; }
 
   /* ── SLIDE 4: NUMBERS ── */
-  #s4 { flex-direction: column; padding: 44px 60px 52px; gap: 20px; }
-  #s4 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; flex: 1; }
-  #s4 .highlights { display: flex; gap: 14px; flex-shrink: 0; }
-  #s4 .hl-card { flex: 1; background: var(--purple); color: white; border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; }
-  #s4 .hl-card .icon { font-size: 1.8rem; flex-shrink: 0; }
-  #s4 .hl-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
-  #s4 .hl-card p { font-size: 0.75rem; opacity: 0.75; }
+  #s4 { flex-direction: row; padding: 0; gap: 0; }
+  #s4 .s4-left { flex: 1.3; display: flex; flex-direction: column; padding: 44px 36px 44px 60px; gap: 18px; }
+  #s4 .s4-right { flex: 0.7; position: relative; overflow: hidden; }
+  #s4 .s4-right img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  #s4 .s4-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, white 0%, transparent 50%); }
+  #s4 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; flex: 1; }
+  #s4 .highlights { display: flex; gap: 12px; flex-shrink: 0; }
+  #s4 .hl-card { flex: 1; background: var(--purple); color: white; border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+  #s4 .hl-card .icon { font-size: 1.6rem; flex-shrink: 0; }
+  #s4 .hl-card h3 { font-size: 0.88rem; font-weight: 700; margin-bottom: 2px; }
+  #s4 .hl-card p { font-size: 0.72rem; opacity: 0.75; }
   #s4 .hl-card.light { background: var(--lavender); }
   #s4 .hl-card.light h3 { color: var(--purple); }
   #s4 .hl-card.light p { color: var(--text-light); opacity: 1; }
@@ -105,7 +108,7 @@
   /* ── SLIDE 5: PRODUCT ── */
   #s5 { padding: 44px 60px; gap: 24px; }
   #s5 .left { flex: 1; flex-direction: column; gap: 18px; justify-content: center; }
-  #s5 .right { flex: 1; flex-direction: column; gap: 14px; justify-content: center; }
+  #s5 .right { flex: 1; flex-direction: row; gap: 10px; align-items: stretch; }
   #s5 .ach-row { display: flex; gap: 12px; }
   #s5 .ach-card { flex: 1; background: var(--lavender); border-radius: 12px; padding: 14px 16px; }
   #s5 .ach-card .icon { font-size: 1.3rem; margin-bottom: 6px; }
@@ -308,11 +311,13 @@
   </div>
   <div class="s3-right">
     <div class="collage">
-      <img class="tall" src="images/rpi.jpeg" alt="Original Raspberry Pi setup">
+      <img class="span3" src="images/proto-2.png" alt="Prototype v2">
+      <img src="images/rpi.jpeg" alt="Original Raspberry Pi setup">
+      <div style="overflow:hidden;border-radius:10px;border:1.5px solid #111;min-height:0;display:flex;align-items:center;justify-content:center;background:#f3f0ff;">
+        <img src="images/front.png" alt="Final product render" style="width:100%;height:100%;object-fit:contain;padding:6px;transform:scale(1.25);display:block;">
+      </div>
       <img src="images/proto-1.png" alt="Prototype v1">
-      <img src="images/proto-2.png" alt="Prototype v2">
-      <img class="span2" src="images/proto-4.jpg" alt="Latest prototype">
-      <img src="images/front.png" alt="Final product render" style="object-fit:contain;background:#f3f0ff;padding:6px;">
+      <img class="span3" src="images/proto-4.jpg" alt="Latest prototype">
     </div>
   </div>
   <img src="images/logo.png" class="slide-logo" alt="logo">
@@ -320,25 +325,30 @@
 </div>
 
 <!-- ══ SLIDE 4: 6 MONTHS IN NUMBERS ══ -->
-<div class="slide col" id="s4">
-  <div style="flex-shrink:0;">
-    <div class="tag">Activity</div>
-    <h2 class="section">6 Months in <span class="highlight">Numbers</span></h2>
+<div class="slide row" id="s4">
+  <div class="s4-left">
+    <div style="flex-shrink:0;">
+      <div class="tag">Activity</div>
+      <h2 class="section">6 Months in <span class="highlight">Numbers</span></h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-block"><div class="num">27+</div><div class="label">Face-to-Face<br>Investor Talks</div></div>
+      <div class="stat-block"><div class="num">50+</div><div class="label">Investor<br>Emails Sent</div></div>
+      <div class="stat-block"><div class="num">15</div><div class="label">Workshops &amp;<br>Training Sessions</div></div>
+      <div class="stat-block"><div class="num">3</div><div class="label">Podcast &amp;<br>Media Appearances</div></div>
+      <div class="stat-block"><div class="num">19</div><div class="label">Mentor &amp; Team<br>Catch-ups</div></div>
+      <div class="stat-block"><div class="num">7</div><div class="label">Weekly R&amp;D<br>Sessions</div></div>
+      <div class="stat-block" style="background:var(--purple);color:white;"><div class="num" style="color:#C084FC;font-size:2rem;">🏆</div><div class="label" style="color:rgba(255,255,255,0.8);">Won sTARTUp Day<br>Speaker Contest</div></div>
+      <div class="stat-block"><div class="num">2</div><div class="label">Incubator<br>Evaluations Passed</div></div>
+    </div>
+    <div class="highlights">
+      <div class="hl-card"><div class="icon">🎤</div><div><h3>Main Stage — sTARTUp Day 2026</h3><p>Presented to ~2,000 attendees in Tartu</p></div></div>
+      <div class="hl-card"><div class="icon">🏭</div><div><h3>Pitched at Tehnopol Demo Day</h3><p>Pitching Stage, Jan 29 at sTARTUp Day</p></div></div>
+      <div class="hl-card light"><div class="icon">📰</div><div><h3 style="color:var(--purple);">2 Podcasts + Press</h3><p style="color:var(--text-light);">CHIIPs podcast, VENTURES Live, Electronics Weekly</p></div></div>
+    </div>
   </div>
-  <div class="stats-grid">
-    <div class="stat-block"><div class="num">27+</div><div class="label">Face-to-Face<br>Investor Talks</div></div>
-    <div class="stat-block"><div class="num">50+</div><div class="label">Investor<br>Emails Sent</div></div>
-    <div class="stat-block"><div class="num">15</div><div class="label">Workshops &amp;<br>Training Sessions</div></div>
-    <div class="stat-block"><div class="num">3</div><div class="label">Podcast &amp;<br>Media Appearances</div></div>
-    <div class="stat-block"><div class="num">19</div><div class="label">Mentor &amp; Team<br>Catch-ups</div></div>
-    <div class="stat-block"><div class="num">7</div><div class="label">Weekly R&amp;D<br>Sessions</div></div>
-    <div class="stat-block" style="background:var(--purple);color:white;"><div class="num" style="color:#C084FC;font-size:2rem;">🏆</div><div class="label" style="color:rgba(255,255,255,0.8);">Won sTARTUp Day<br>Speaker Contest</div></div>
-    <div class="stat-block"><div class="num">2</div><div class="label">Incubator<br>Evaluations Passed</div></div>
-  </div>
-  <div class="highlights">
-    <div class="hl-card"><div class="icon">🎤</div><div><h3>Main Stage — sTARTUp Day 2026</h3><p>Presented to ~2,000 attendees in Tartu</p></div></div>
-    <div class="hl-card"><div class="icon">🏭</div><div><h3>Pitched at Tehnopol Demo Day</h3><p>Pitching Stage, Jan 29 at sTARTUp Day</p></div></div>
-    <div class="hl-card light"><div class="icon">📰</div><div><h3 style="color:var(--purple);">2 Podcasts + Press</h3><p style="color:var(--text-light);">CHIIPs podcast, VENTURES Live, Electronics Weekly</p></div></div>
+  <div class="s4-right">
+    <img src="images/me-speaking.jpg" alt="Max presenting at sTARTUp Day">
   </div>
   <img src="images/logo.png" class="slide-logo" alt="logo">
   <span class="slide-num">4 / 12</span>
@@ -359,10 +369,12 @@
       <div class="ach-card"><div class="icon">📐</div><h4>OnShape Startup Programme</h4><p>Accepted — unlimited access to professional 3D CAD and expert manufacturing advice.</p></div>
     </div>
   </div>
-  <div class="right col" style="padding:44px 60px 44px 24px;gap:10px;justify-content:center;">
-    <img src="images/product-photo-a.jpg" alt="Product view A" style="flex:1;min-height:0;border-radius:12px;object-fit:cover;width:100%;filter:drop-shadow(0 4px 16px rgba(107,33,168,0.2));">
-    <img src="images/product-photo-b.jpg" alt="Product view B" style="flex:1;min-height:0;border-radius:12px;object-fit:cover;width:100%;filter:drop-shadow(0 4px 16px rgba(107,33,168,0.2));">
-    <img src="images/product-photo-c.jpg" alt="Product view C" style="flex:1;min-height:0;border-radius:12px;object-fit:cover;width:100%;filter:drop-shadow(0 4px 16px rgba(107,33,168,0.2));">
+  <div class="right col" style="padding:44px 60px 44px 16px;gap:10px;justify-content:center;align-items:center;">
+    <img src="images/proto-3.png" alt="Prototype v3" style="max-height:40vh;max-width:100%;object-fit:contain;border-radius:12px;filter:drop-shadow(0 4px 16px rgba(107,33,168,0.2));">
+    <div style="display:flex;gap:10px;align-items:center;justify-content:center;">
+      <img src="images/3d-model.JPG" alt="3D model" style="max-height:25vh;max-width:48%;object-fit:contain;border-radius:12px;filter:drop-shadow(0 4px 16px rgba(107,33,168,0.2));">
+      <img src="images/other-3d.jpeg" alt="3D model alternate" style="max-height:25vh;max-width:48%;object-fit:contain;border-radius:12px;filter:drop-shadow(0 4px 16px rgba(107,33,168,0.2));">
+    </div>
   </div>
   <img src="images/logo.png" class="slide-logo" alt="logo">
   <span class="slide-num">5 / 12</span>
