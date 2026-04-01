@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Purple Parrot | The Original Purple Parrot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Introducing the Purple Parrot Companion — a genuine, live parrot. No cloud, no app. Just a bird.">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1d1d1f;
+            line-height: 1.5;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 50px;
+            height: 52px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 0.85rem;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #8B1538;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.3rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* New badge */
+        .new-badge {
+            display: inline-block;
+            background: #6B5B95;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 980px;
+            margin-bottom: 16px;
+        }
+
+        /* Product Hero */
+        .product-hero {
+            padding: 100px 40px 80px;
+            background: linear-gradient(180deg, #f5f5f7 0%, #fff 100%);
+        }
+
+        .product-hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .product-gallery {
+            position: relative;
+        }
+
+        .parrot-image-container {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 32px;
+            overflow: hidden;
+            filter: drop-shadow(0 40px 80px rgba(107, 91, 149, 0.25));
+        }
+
+        .parrot-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .product-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .product-thumbnail {
+            width: 65px;
+            height: 65px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            padding: 6px;
+            background: #f5f5f7;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .product-thumbnail:hover,
+        .product-thumbnail.active {
+            border-color: #6B5B95;
+        }
+
+        .product-info h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+
+        .product-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #6B5B95;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .product-tagline {
+            font-size: 1.15rem;
+            color: #515154;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-price-note {
+            font-size: 0.95rem;
+            color: #86868b;
+            margin-bottom: 30px;
+        }
+
+        .product-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 320px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 18px 32px;
+            background: #8B1538;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 980px;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #6d1029;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 18px 32px;
+            background: transparent;
+            color: #8B1538;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 980px;
+            text-align: center;
+            border: 2px solid #8B1538;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #8B1538;
+            color: #fff;
+        }
+
+        .no-subscription {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #1d1d1f;
+            margin-top: 20px;
+        }
+
+        .no-subscription svg {
+            width: 20px;
+            height: 20px;
+            stroke: #34C759;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        /* Key Features Bar */
+        .key-features {
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #6B5B95 0%, #8B1538 100%);
+        }
+
+        .key-features-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+        }
+
+        .key-feature {
+            text-align: center;
+            color: #fff;
+        }
+
+        .key-feature-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, #8B1538, #d4526e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .key-feature h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .key-feature p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Feature Sections */
+        .feature-section {
+            padding: 120px 40px;
+        }
+
+        .feature-section:nth-child(even) {
+            background: #f5f5f7;
+        }
+
+        .feature-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .feature-inner.reverse {
+            direction: rtl;
+        }
+
+        .feature-inner.reverse > * {
+            direction: ltr;
+        }
+
+        .feature-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #f0ecf8 0%, #e8f4fd 100%);
+            border-radius: 24px;
+            padding: 50px 40px;
+            min-height: 320px;
+            font-size: 6rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+
+        .feature-content p {
+            font-size: 1.15rem;
+            color: #515154;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1rem;
+            color: #515154;
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .feature-list li::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%236B5B95' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'/%3E%3Cpolyline points='22 4 12 14.01 9 11.01'/%3E%3C/svg%3E") center/contain no-repeat;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Specs */
+        .specs-section {
+            padding: 100px 40px;
+            background: #f5f5f7;
+        }
+
+        .specs-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .specs-inner h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: #e0e0e5;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .spec-item {
+            background: #fff;
+            padding: 28px 30px;
+        }
+
+        .spec-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #86868b;
+            margin-bottom: 8px;
+        }
+
+        .spec-value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1d1d1f;
+        }
+
+        /* Privacy / trust section */
+        .trust-section {
+            padding: 100px 40px;
+        }
+
+        .trust-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .trust-inner h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+
+        .trust-inner p {
+            font-size: 1.2rem;
+            color: #515154;
+            line-height: 1.7;
+            margin-bottom: 50px;
+        }
+
+        .privacy-badges {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .privacy-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .privacy-badge-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #f0ecf8, #e8d5e5);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .privacy-badge p {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.25);
+            animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to   { transform: scale(1);    opacity: 1; }
+        }
+
+        .modal-parrot {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .modal h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .modal p {
+            font-size: 1.05rem;
+            color: #515154;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .modal .btn-primary {
+            text-decoration: none;
+            display: block;
+        }
+
+        .modal-close {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: #86868b;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            background: #f5f5f7;
+            padding: 60px 40px 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 50px;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: #86868b;
+            line-height: 1.7;
+            margin-top: 12px;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            font-size: 0.85rem;
+            color: #86868b;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #1d1d1f;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #86868b;
+        }
+
+        .footer-bottom a {
+            color: #86868b;
+            text-decoration: none;
+            margin-left: 24px;
+        }
+
+        .footer-bottom a:hover {
+            color: #1d1d1f;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 25px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .product-hero {
+                padding: 80px 25px 60px;
+            }
+
+            .product-hero-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .product-info h1 {
+                font-size: 2.2rem;
+            }
+
+            .product-cta {
+                max-width: 100%;
+            }
+
+            .key-features-inner {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .feature-section {
+                padding: 80px 25px;
+            }
+
+            .feature-inner,
+            .feature-inner.reverse {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                direction: ltr;
+            }
+
+            .feature-content h2 {
+                font-size: 2rem;
+            }
+
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .privacy-badges {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-bottom a {
+                margin: 0 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .key-features-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">Purple Parrot</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="news/index.html">News</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="mobile-menu" onclick="toggleMenu()">&#9776;</button>
+    </nav>
+
+    <!-- Product Hero -->
+    <section class="product-hero">
+        <div class="product-hero-inner">
+            <div class="product-gallery">
+                <div class="parrot-image-container">
+                    <img src="images/purple-parrot-real.png" alt="Purple Parrot Companion — hand-reared, privacy-first">
+                </div>
+                <div class="product-thumbnails">
+                    <div class="product-thumbnail active">🦜</div>
+                    <div class="product-thumbnail">🐦</div>
+                    <div class="product-thumbnail">🪺</div>
+                    <div class="product-thumbnail">🌿</div>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="new-badge">New — Spring 2025</span>
+                <h1>Purple Parrot</h1>
+                <p class="product-subtitle">The Original. A Real Bird.</p>
+                <p class="product-tagline">Introducing the Purple Parrot Companion — a genuine, live, hand-reared parrot. No cloud. No app. No subscription. Just feathers, personality, and complete off-grid intelligence.</p>
+                <p class="product-price">£299</p>
+                <p class="product-price-note">Free UK delivery • Includes starter seed pack • Nappy included • 30-day happiness guarantee</p>
+                <div class="product-cta">
+                    <button class="btn-primary" onclick="showModal()">Order Now</button>
+                    <a href="products.html" class="btn-secondary">View Baby Monitor</a>
+                </div>
+                <div class="no-subscription">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>No subscription required. Ever.</span>
+                </div>
+                <div class="no-subscription" style="margin-top: 10px;">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>No firmware updates required.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Bar -->
+    <section class="key-features">
+        <div class="key-features-inner">
+            <div class="key-feature">
+                <div class="key-feature-icon">🌿</div>
+                <h3>100% Organic</h3>
+                <p>No semiconductors</p>
+            </div>
+            <div class="key-feature">
+                <div class="key-feature-icon">🧠</div>
+                <h3>On-Device AI</h3>
+                <p>Biological neural net</p>
+            </div>
+            <div class="key-feature">
+                <div class="key-feature-icon">🔒</div>
+                <h3>100% Private</h3>
+                <p>No data leaves the bird</p>
+            </div>
+            <div class="key-feature">
+                <div class="key-feature-icon">🔋</div>
+                <h3>Seed Powered</h3>
+                <p>No charging required</p>
+            </div>
+            <div class="key-feature">
+                <div class="key-feature-icon">🎙️</div>
+                <h3>Voice Response</h3>
+                <p>Learns your language</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: Privacy -->
+    <section class="feature-section">
+        <div class="feature-inner">
+            <div class="feature-image">🔒</div>
+            <div class="feature-content">
+                <h2>Privacy that's built in. Literally.</h2>
+                <p>Unlike cloud-connected baby monitors, the Purple Parrot Companion has absolutely no network connectivity. Your conversations, your home, your life — none of it is transmitted anywhere. It can't be. It's a bird.</p>
+                <ul class="feature-list">
+                    <li>Zero data collection — no server, no storage</li>
+                    <li>Immune to software vulnerabilities and CVEs</li>
+                    <li>Cannot be remotely accessed or hijacked</li>
+                    <li>GDPR compliant by nature</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: Intelligence -->
+    <section class="feature-section">
+        <div class="feature-inner reverse">
+            <div class="feature-image">🧠</div>
+            <div class="feature-content">
+                <h2>Advanced on-device intelligence.</h2>
+                <p>The Purple Parrot Companion ships with a fully self-contained biological neural network, pre-trained on millions of years of evolutionary data. It processes audio, visual, and environmental signals in real time — entirely offline.</p>
+                <ul class="feature-list">
+                    <li>Learns new vocabulary over time</li>
+                    <li>Detects unusual sounds and responds immediately</li>
+                    <li>Adapts to your home environment autonomously</li>
+                    <li>No model updates — intelligence is baked in at birth</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: Voice -->
+    <section class="feature-section">
+        <div class="feature-inner">
+            <div class="feature-image">🎙️</div>
+            <div class="feature-content">
+                <h2>Two-way audio. No latency.</h2>
+                <p>The Purple Parrot Companion features exceptional two-way audio with zero milliseconds of network latency. Hear what's happening across the room instantly. Speak back. It may or may not repeat you — but rest assured, it's listening.</p>
+                <ul class="feature-list">
+                    <li>Full-spectrum audio reception</li>
+                    <li>Proprietary squawk-based alert system</li>
+                    <li>Responds to its name (training period: 3–6 weeks)</li>
+                    <li>No speaker grille to clean</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs -->
+    <section class="specs-section">
+        <div class="specs-inner">
+            <h2>Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Processor</div>
+                    <div class="spec-value">Avian Neural Network (proprietary)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Memory</div>
+                    <div class="spec-value">Excellent — up to 200 phrases</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Battery Life</div>
+                    <div class="spec-value">Seeds + water (included)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Connectivity</div>
+                    <div class="spec-value">None. Deliberately.</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Firmware</div>
+                    <div class="spec-value">Factory-installed. Not updatable.</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Audio Output</div>
+                    <div class="spec-value">Up to 85 dB (squawk mode)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Night Vision</div>
+                    <div class="spec-value">No — sleeps at night like a professional</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Encryption</div>
+                    <div class="spec-value">N/A — all data stored in feathers</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Lifespan</div>
+                    <div class="spec-value">25–50 years (outlasts your smart home)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Dimensions</div>
+                    <div class="spec-value">~30 cm tall. Slightly judgemental posture.</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Weight</div>
+                    <div class="spec-value">~400 g (without ego)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Compatible With</div>
+                    <div class="spec-value">Perches, shoulders, pirate ships</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust section -->
+    <section class="trust-section">
+        <div class="trust-inner">
+            <h2>No cloud. No compromise. No cage required (but recommended).</h2>
+            <p>Every Purple Parrot Companion is hand-reared, ethically sourced, and arrives ready to monitor your home with the kind of presence that no silicon chip has ever been able to replicate. It knows when something is wrong. You'll know too — it will tell you. Loudly.</p>
+            <div class="privacy-badges">
+                <div class="privacy-badge">
+                    <div class="privacy-badge-icon">🌿</div>
+                    <p>Organic Hardware</p>
+                </div>
+                <div class="privacy-badge">
+                    <div class="privacy-badge-icon">🔒</div>
+                    <p>Air-Gapped</p>
+                </div>
+                <div class="privacy-badge">
+                    <div class="privacy-badge-icon">♻️</div>
+                    <p>Biodegradable</p>
+                </div>
+                <div class="privacy-badge">
+                    <div class="privacy-badge-icon">🤝</div>
+                    <p>Ethically Sourced</p>
+                </div>
+                <div class="privacy-badge">
+                    <div class="privacy-badge-icon">🏠</div>
+                    <p>Local Processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" style="font-weight: 600; text-decoration: none; color: #1d1d1f; font-size: 1.1rem; letter-spacing: -0.02em;">Purple Parrot</a>
+                <p>Safer Parenting. Perfectly Private.<br>Also, now: a bird.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="products.html">Baby Monitor</a></li>
+                    <li><a href="parrot.html">The Parrot</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="news/index.html">News</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="cookies.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>Copyright &copy; 2025 Purple Parrot Ltd. The parrot is not real. Happy April Fools.</span>
+            <div>
+                <a href="cookies.html">Cookie Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- April Fools Modal -->
+    <div class="modal-overlay" id="aprilFoolsModal">
+        <div class="modal">
+            <span class="modal-parrot">🦜</span>
+            <h2>April Fools!</h2>
+            <p>We're not actually selling a parrot. Although... would you buy one?</p>
+            <p style="font-size: 0.9rem; color: #86868b;">Our <em>actual</em> product is the Purple Parrot baby monitor — a privacy-first smart monitor with breathing detection, sleep tracking, and zero cloud uploads.</p>
+            <a href="products.html" class="btn-primary">See the Real Product</a>
+            <br>
+            <button class="modal-close" onclick="closeModal()">I want to stay here with the bird</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function showModal() {
+            document.getElementById('aprilFoolsModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('aprilFoolsModal').classList.remove('active');
+        }
+
+        document.getElementById('aprilFoolsModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+</body>
+
+</html>
